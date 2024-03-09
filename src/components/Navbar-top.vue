@@ -41,12 +41,16 @@ import { RouterLink } from "vue-router";
     .top__navigation-actions{
         display: flex;
         align-items: center;
-        column-gap: 20px;
+        column-gap: 25px;
         .navigation-link{
             color: var(--secondary-color);
-            font-size: 18px;
+            font-size: 17px;
             border: none;
             text-decoration: none;
+            &:hover{
+                cursor: pointer;
+                color: var(--dark-color);
+            }
         }
     }
 </style>
