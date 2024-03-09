@@ -6,6 +6,8 @@ import { RouterLink } from "vue-router";
     }
 </script>
 <template>
+    <div class="navbar-top">
+
     <Container>
             <div class="nav__top-navigation">
                 <select class="language-category">
@@ -20,10 +22,20 @@ import { RouterLink } from "vue-router";
                 </div>
             </div>
     </Container>
+</div>
+
 </template>
 
 
 <style  lang="scss">
+.navbar-top{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 47px;
+    padding: 1rem;
+    background-color: #f4f6f7;
+}
     .nav__top-navigation{
         width: 100%;
         height: 40px;
@@ -32,10 +44,11 @@ import { RouterLink } from "vue-router";
     }
     .language-category{
         color: var(--secondary-color);
-        font-size: 22px;
+        font-size: 20px;
         outline-color: var(--secondary-color);     
         border: none; 
         outline: none; 
+        background: transparent;
         width: 70px;
     }
     .top__navigation-actions{
@@ -44,7 +57,7 @@ import { RouterLink } from "vue-router";
         column-gap: 25px;
         .navigation-link{
             color: var(--secondary-color);
-            font-size: 17px;
+            font-size: 16px;
             border: none;
             text-decoration: none;
             &:hover{
