@@ -10,6 +10,11 @@ const routes = createRouter({
             component: Home
         },
         {
+            path: '/prayer-time',
+            name: 'PrayerTime',
+            component: () => import('../router/PrayerTime.vue')
+        },
+        {
             path: '/cart',
             name: 'Cart',
             component: () => import('@/router/Cart.vue')
