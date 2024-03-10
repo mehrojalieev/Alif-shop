@@ -23,7 +23,9 @@ export default {
     <nav>
         <Container>
             <div class="nav-wrapper">
-                <img class="logo-image" src="../assets/logo.svg" alt="Nav Logo">
+                <RouterLink to="/">
+                    <img class="logo-image" src="../assets/logo.svg" alt="Nav Logo">
+                </RouterLink>
                 <div @click="openCategory =! openCategory" class="category-action">
                     <span v-if="openCategory" class="material-symbols-outlined">close</span>
                     <span v-else class="material-symbols-outlined">menu</span>
@@ -37,11 +39,11 @@ export default {
                     </button>
                 </form>
                 <div class="nav-actions">
-                    <RouterLink to="/" class="action-item">
+                    <RouterLink to="cart" class="action-item">
                         <span class="material-symbols-outlined">shopping_cart</span>
                         <p>Savat</p>
                     </RouterLink>
-                    <RouterLink to="/" class="action-item favorite-item">
+                    <RouterLink to="favorites" class="action-item favorite-item">
                         <span class="material-symbols-outlined">favorite</span>
                         <p>Saralanganlar</p>
                     </RouterLink>
@@ -75,15 +77,15 @@ export default {
                     <span class="material-symbols-outlined">home</span>
                     <p>Asosiy</p>
                 </RouterLink>
-                <button class="item-link item-link__category">
+                <Router to="/" class="item-link item-link__category">
                     <span class="material-symbols-outlined">manage_search</span>
                     <p>Katalog</p>
-                </button>
-                <RouterLink class="item-link" to="/">
+                </Router>
+                <RouterLink class="item-link" to="cart">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     <p>Savat</p>
                 </RouterLink>
-                <RouterLink class="item-link" to="/">
+                <RouterLink class="item-link" to="favorites">
                     <span class="material-symbols-outlined">favorite</span>
                     <p>Saralanganlar</p>
                 </RouterLink>
@@ -188,6 +190,7 @@ export default {
         .action-item{
             text-align: center;
             text-decoration: none;
+            &:hover span{color: var(--warning-color);}
             span{
                 color: var(--dark-color);
                 font-size: 26px;
@@ -218,10 +221,12 @@ export default {
         display: none;
     }
 
+
     .tablet__navbar-actions{
         display: none ;
         align-items: center;
         justify-content: space-around;
+        background-color: var(--light-color);
         padding: .5rem 1rem;
         width: 100%;
         height: 60px;
