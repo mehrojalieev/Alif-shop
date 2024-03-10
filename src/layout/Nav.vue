@@ -7,6 +7,7 @@ export default {
         return {
             openCategory: false,
             openClearBtn: false,
+            isFocosed: false,
             input_value: ""
         }
     },
@@ -58,6 +59,14 @@ export default {
                 </select>
                 </div>
 
+                <form @focusout="isFocosed=false" :style="{border: isFocosed ? '2px solid #FFBE1F' : '2px solid #eee' }" class="navigation-form">
+                    <input @focus="isFocosed=true"  type="text" placeholder="Tovarlarni izlash">
+                    <span :style="{display: isFocosed ? 'block' : 'none'}" class="material-symbols-outlined clear__input-icon">close</span>
+                    <button :style="{display: isFocosed ? 'block' : 'none'}" class="search-btn">Qidirish</button>
+                    <span :style="{display: !isFocosed ? 'block' : 'none'}" class="material-symbols-outlined search-icon">search</span>
+
+                </form>
+
             </div>
             
             <!-- BOTTOM ACTION  -->
@@ -90,6 +99,7 @@ export default {
 
 
 <style lang="scss">
+
     .nav-wrapper{
         width: 100%;
         display: flex;
@@ -203,6 +213,11 @@ export default {
     }
 
     // RESPONSIVE CONTENT STYLES
+
+    .responsive__navigation{
+        display: none;
+    }
+
     .tablet__navbar-actions{
         display: none ;
         align-items: center;
@@ -238,9 +253,39 @@ export default {
         justify-content: space-between;
     }
     .navigation-form{
-
+        margin-top: 10px;
+        display: flex;
+        height: 47px;
+        border: 2px solid #eee;
+        border-radius: 8px;
+        align-items: center;
+        padding: 0 .5rem;
+        column-gap: 6px;
+        input{
+            flex: 1;
+            border: none;
+            height: 100%;
+            text-indent: 5px;
+            outline: none;
+            font-size: 15px;
+        }
+        .clear__input-icon{
+            display: none;
+            color: var(--secondary-color);
+        }
+        .search-btn{
+            display: none;
+            background-color: var(--warning-color);
+            padding: 6px 10px;
+            border: none;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+        .search-icon{
+            color: var(--secondary-color);
+        }
     }
-    
+
 
 
     @media only screen and (max-width: 1186px){
@@ -431,12 +476,100 @@ export default {
         }
     }
 
-    @media only screen and (max-width: 660px){
+    @media only screen and (max-width: 680px){
         .nav-wrapper{
             display: none;
         }
+        .responsive__navigation{
+            display: block;
+        }
+
         .tablet__navbar-actions{
             display: flex;
         }
+    }
+
+    @media only screen and (max-width: 538px){
+        .tablet__navbar-actions{
+            column-gap: 10px;
+        }
+        .tablet__navbar-actions{
+        padding: .5rem 1rem;
+        width: 100%;
+        height: 60px;
+        .item-link{
+            span{
+                font-size: 25px;
+            }
+            p{
+                font-size: 13px;
+            }
+        }
+
+    }
+    }
+
+    @media only screen and (max-width: 420px){
+        .tablet__navbar-actions{
+            column-gap: 10px;
+        padding: .5rem .4rem;
+        height: 55px;
+        .item-link{
+            span{
+                font-size: 24px;
+            }
+            p{
+                font-size: 12px;
+            }
+        }
+
+    }
+    }
+    @media only screen and (max-width: 330px){
+        .navigation-form{
+        height: 47px;
+        padding: 0;
+        column-gap: 1px;
+        input{
+            font-size: 12px;
+        }
+        .clear__input-icon{
+            display: none !important;
+        }
+        .search-btn{
+            padding: 6px 5px;
+            font-size: 12px;
+            }
+    }
+
+        .tablet__navbar-actions{
+            column-gap: 10px;
+        padding: .5rem .2rem;
+        height: 51px;
+        .item-link{
+            span{
+                font-size: 23px;
+            }
+            p{
+                font-size: 11px;
+            }
+        }
+
+    }
+    }
+    @media only screen and (max-width: 284px){
+        .tablet__navbar-actions{
+            column-gap: 1px;
+        height: 40px;
+        .item-link{
+            span{
+                font-size: 24px;
+            }
+            p{
+                display: none;
+            }
+        }
+
+    }
     }
 </style>

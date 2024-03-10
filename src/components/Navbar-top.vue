@@ -66,4 +66,21 @@ import { RouterLink } from "vue-router";
             }
         }
     }
+
+    // RESPONSIVE STYLES 
+
+    @media only screen and (max-width: 860px){
+        .top__navigation-actions{
+        column-gap: 22px;
+        .navigation-link{
+            font-size: 14px;
+        }
+    }
+    }
+
+    @media only screen and (max-width: 680px) {
+        .navbar-top{
+            display: none;
+        }
+    }
 </style>
