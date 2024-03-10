@@ -16,7 +16,7 @@ import { RouterLink } from "vue-router";
                     <option value="en">EN</option>
                 </select>
                 <div class="top__navigation-actions">
-                    <RouterLink class="navigation-link" to='pray-time'>Namoz vaqti</RouterLink>
+                    <RouterLink class="navigation-link" to='prayer-time'>Namoz vaqti</RouterLink>
                     <RouterLink class="navigation-link" to='sell'>alif shopda soting</RouterLink>
                     <RouterLink class="navigation-link" to='pray-time'>Bizga yozing</RouterLink>
                 </div>

@@ -1,10 +1,12 @@
 <script>
 import Container from '@/utils/Container.vue'
 import { RouterLink } from 'vue-router';
+import authModal from '@/utils/auth-modal.vue';
 export default {
-    components:{Container},
+    components:{Container, authModal},
     data(){
         return {
+            isOpenModal: false,
             openCategory: false,
             openClearBtn: false,
             isFocosed: false,
@@ -47,7 +49,8 @@ export default {
                         <span class="material-symbols-outlined">favorite</span>
                         <p>Saralanganlar</p>
                     </RouterLink>
-                    <Router-Link to="/" class="auth-link">Kirish</Router-Link>
+                    <button type="button" @click="isOpenModal=!isOpenModal"  class="auth-link">Kirish</button>
+                    <authModal :isOpenModal="isOpenModal"/>
                 </div>
             </div>
             <!-- RESPONSIVE CONTAINER -->
@@ -208,6 +211,7 @@ export default {
             border: 2px solid var(--warning-color);
             border-radius: 8px;
             transition: 0.2s;
+            background: transparent;
             &:hover{
                 background-color: var(--warning-hover-color);
                 cursor: pointer;
