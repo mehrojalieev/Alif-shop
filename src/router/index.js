@@ -8,6 +8,16 @@ const routes = createRouter({
             path: "/",
             name: 'Home',
             component: Home
+        },
+        {
+            path: '/cart',
+            name: 'Cart',
+            component: () => import('@/router/Cart.vue')
+        },
+        {
+            path: '/favorites',
+            name: 'Favorites',
+            component: () => import('@/router/Favorite.vue')
         }
     ]
 })

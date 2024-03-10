@@ -1,10 +1,12 @@
 <script>
         import NavbarTop from '@/components/Navbar-top.vue'
         import Nav from '@/layout/Nav.vue';
+        import Hero from '@/components/Hero.vue'
         export default{
             components: {
-                NavbarTop,
-                Nav
+                // NavbarTop,
+                // Nav,
+                Hero
             }
         }
 </script>
@@ -13,5 +15,6 @@
     <div>
         <NavbarTop/>    
         <Nav/>
+        <Hero/>
     </div>
 </template>
