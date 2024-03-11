@@ -6,6 +6,7 @@ export default {
     components:{Container, authModal},
     data(){
         return {
+        isFixed: false,
             isOpenModal: false,
             openCategory: false,
             openClearBtn: false,
@@ -13,18 +14,32 @@ export default {
             input_value: ""
         }
     },
+    mounted(){
+        window.addEventListener('scroll', this.handleScroll)
+    },
+    destroyed(){
+        window.removeEventListener('scroll', this.handleScroll)
+    },
     methods:{
         clearInput(){
             this.input_value = ''
+        },
+        handleScroll(){
+            const scrollPosition = window.screenY || window.pageYOffset
+            if(scrollPosition > 30){
+                this.isFixed = true;
+            } else{
+                this.isFixed = false
+            }
         }
     }
 }
 </script>
 
 <template>
-    <nav>
+    <nav :class="{'fixed-navbar': isFixed}">
         <Container>
-            <div class="nav-wrapper">
+            <div  class="nav-wrapper">
                 <RouterLink to="/">
                     <img class="logo-image" src="../assets/logo.svg" alt="Nav Logo">
                 </RouterLink>
@@ -105,24 +120,40 @@ export default {
 
 <style lang="scss">
 
+// FOR FIXED NAVBAR CLASS
+.fixed-navbar {
+    display: flex;
+  position: fixed;
+  top: 0;
+  left: 0%;
+  width: 100%;
+    margin: auto !important;
+  z-index: 1000;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: var(--light-color); 
+}
+
     .nav-wrapper{
+        margin: auto;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
         column-gap: 10px;
+        padding: .1rem 0;
     }
     .logo-image{
         width: 110px;
         height: 42px;
     }
+
     .category-action{
         display: flex;
         align-items: center;
         justify-content: center;
         column-gap: 5px;
         background-color: var(--warning-color);
-        padding:  12px;
+        padding: 10px  11px;
         min-width: 200px;
         border-radius: 8px;
         transition: 0.2s;
@@ -131,7 +162,7 @@ export default {
             background-color: var(--warning-hover-color);
         }
         p{
-            font-size: 17px;
+            font-size: 16px;
             color: var(--dark-color);
         }
     }
