@@ -13,14 +13,13 @@ export default {
         LoadPRoducts(){
             ApiInstance.get('/products')
             .then(response => {
-                console.log(response);
+                console.log(response.data);
                 this.products_data = response?.data
             })
         }
     },
     mounted(){
         this.LoadPRoducts()
-        console.log(this.products_data && this.products_data);
     }
 }
 </script>
@@ -34,7 +33,7 @@ export default {
                     <div v-for="(product, index) in this.products_data" class="product-card" :key="index">
                         <img :src="product.image[0]" :alt='product.product_name'>
                         <span class="material-symbols-outlined like-btn">favorite</span>
-                        <p class="product-name">Telefon {{product.product_name}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom+'GB'}}</p>
+                        <p class="product-name">Telefon {{product.product_name.slice(0, 30)}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom === null ? '' : product.memory_rom+'GB'}}</p>
                         <span>dan 200.000 so'm/oyiga</span>
                         <strong class="price old-price">{{product.price - product.price/10 +` so'm`}}</strong>
                         <strong class="price">{{product.price}} so'm</strong>
@@ -70,7 +69,7 @@ export default {
         border-radius: 8px;
         text-align: left;
         padding: 1rem .8rem;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        box-shadow: #959da533 0px 8px 24px;
 
         img{
             width: 100%;
@@ -79,9 +78,8 @@ export default {
         }
         .like-btn{
             position: absolute;
-            top: .8rem;
-            right: .7rem;
-            // background-color: #a5b1bb;
+            top: .6rem;
+            right: .6rem;
             border: none;
             background: transparent;
             border-radius: 30%;
@@ -133,8 +131,497 @@ export default {
             span{
                 margin-top: 3px;
                 font-size: 20px;
+                border: none;
                 background-color: transparent;
             }
         }
     }
+
+    // RESPONSIVE STYLES
+
+    @media only screen and (max-width: 1444px){
+        .product-card{
+        max-width: 220px;
+        padding: .7rem .7rem;
+
+        img{
+            height: 162px;
+        }
+        .like-btn{
+            top: .6rem;
+            right: .6rem;
+            font-size: 23px;
+        }
+        .product-name{
+            margin:8px 0;
+            font-size: 13px;
+        }
+        span{
+            font-size: 12px;
+            padding: 2px 6px;
+            margin-bottom: 5px;
+        }
+        .old-price{
+            font-size: 12px;
+        }
+        .price{
+            font-size: 13px;
+        }
+        .add__cart-btn{
+            max-width: 115px;
+            height: 36px;
+            margin-top: 15px;
+            font-size: 13px;
+            span{
+                margin-top: 3px;
+                font-size: 19px;
+            }
+        }
+    }
+    }
+    @media only screen and (max-width: 1144px){
+        .product__card-container{
+            gap: 20px 8px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .product-card{
+        max-width: 250px;
+        padding: 1rem .7rem;
+
+        img{
+            height: 180px;
+        }
+        .like-btn{
+            top: .6rem;
+            right: .6rem;
+            font-size: 25px;
+        }
+        .product-name{
+            margin:13px 0;
+            font-size: 15px;
+        }
+        span{
+            font-size: 12px;
+            padding: 3px 7px;
+            margin-bottom: 10px;
+        }
+        .price{
+            font-size: 15px;
+        }
+        .old-price{
+            font-size: 13px;
+        }
+        .add__cart-btn{
+            max-width: 220px;
+            height: 38px;
+            margin: 15px auto 0;
+            font-size: 15px;
+            span{
+                margin-top: 8px;
+                font-size: 20px;
+            }
+        }
+    }
+    }
+
+    @media only screen and (max-width: 1055px){
+        .product__card-container{
+            gap: 30px 20px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .product-card{
+        max-width: 240px;
+        padding: .8rem .6rem;
+
+        img{
+            height: 150px;
+        }
+        .like-btn{
+            font-size: 23px;
+        }
+        .product-name{
+            margin:13px 0;
+            font-size: 13px;
+        }
+        span{
+            font-size: 11px;
+            padding: 3px 6px;
+            margin-bottom: 10px;
+        }
+        .price{
+            font-size: 15px;
+        }
+        .old-price{
+            font-size: 13px;
+        }
+        .add__cart-btn{
+            max-width: 220px;
+            height: 34px;
+            margin: 15px auto 0;
+            font-size: 14px;
+            span{
+                margin-top: 8px;
+                font-size: 18px;
+            }
+        }
+    }
+    }
+    @media only screen and (max-width: 940px){
+        .product__card-container{
+            gap: 30px 20px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .product-card{
+        max-width: 240px;
+        padding: .7rem .5rem;
+
+        img{
+            height: 145px;
+        }
+        .like-btn{
+            font-size: 22px;
+        }
+        .product-name{
+            margin:5px 0;
+            font-size: 12px;
+        }
+        span{
+            font-size: 10px;
+            padding: 3px 6px;
+            margin-bottom: 8px;
+        }
+        .price{
+            font-size: 14px;
+        }
+        .old-price{
+            font-size: 12px;
+        }
+        .add__cart-btn{
+            max-width: 220px;
+            height: 31px;
+            margin: 10px auto 0;
+            font-size: 13px;
+            span{
+                margin-top: 8px;
+                font-size: 16px;
+            }
+        }
+    }
+    }
+    @media only screen and (max-width: 840px){
+        .product__card-container{
+            gap: 30px 20px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .product-card{
+        max-width: 270px;
+        padding: .6rem .5rem;
+
+        img{
+            height: 190px;
+        }
+        .like-btn{
+            font-size: 24px;
+        }
+        .product-name{
+            margin:12px 0;
+            font-size: 13px;
+        }
+        span{
+            font-size: 12px;
+            padding: 3px 6px;
+            margin-bottom: 8px;
+        }
+        .price{
+            font-size: 15px;
+        }
+        .old-price{
+            font-size: 13px;
+        }
+        .add__cart-btn{
+            height: 35px;
+            margin: 10px auto 0;
+            font-size: 13px;
+            span{
+                margin-top: 8px;
+                font-size: 16px;
+            }
+        }
+    }
+    }
+    @media only screen and (max-width: 720px){
+        .product__card-container{
+            gap: 25px 17px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .product-card{
+        max-width: 230px;
+        padding: .6rem .5rem;
+
+        img{
+            height: 155px;
+        }
+        .like-btn{
+            font-size: 24px;
+        }
+        .product-name{
+            margin:12px 0;
+            font-size: 12px;
+        }
+        span{
+            font-size: 11px;
+            padding: 3px 6px;
+            margin-bottom: 8px;
+        }
+        .price{
+            font-size: 14px;
+        }
+        .old-price{
+            font-size: 12px;
+        }
+        .add__cart-btn{
+            height: 30px;
+            margin: 10px auto 0;
+            font-size: 13px;
+            span{
+                margin-top: 8px;
+                font-size: 16px;
+            }
+        }
+    }
+    }
+    @media only screen and (max-width: 654px){
+        .product__card-container{
+            gap: 25px 17px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .product-card{
+        max-width: 230px;
+        padding: .6rem .5rem;
+
+        img{
+            height: 135px;
+        }
+        .like-btn{
+            top: .2rem;
+            right: .3rem;
+            font-size: 22px;
+        }
+        .product-name{
+            margin:3px 0;
+            font-size: 12px;
+        }
+        span{
+            font-size: 11px;
+            padding: 2px 5px;
+            margin-bottom: 8px;
+        }
+        .price{
+            font-size: 13px;
+        }
+        .old-price{
+            font-size: 11px;
+        }
+        .add__cart-btn{
+            height: 30px;
+            margin: 10px auto 0;
+            font-size: 12px;
+            span{
+                margin-top: 8px;
+                font-size: 16px;
+            }
+        }
+    }
+    }
+
+    @media only screen and (max-width: 598px){
+        .products-title{
+            font-size: 26px;
+        }
+        .product__card-container{
+            gap: 25px 10px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .product-card{
+        max-width: 255px;
+        padding: .6rem .5rem;
+
+        img{
+            height: 160px;
+        }
+        .like-btn{
+            top: .5rem;
+            right: .5rem;
+            font-size: 24px;
+        }
+        .product-name{
+            margin:7px 0;
+            font-size: 13px;
+        }
+        span{
+            font-size: 12px;
+            padding: 3px 8px;
+            margin-bottom: 8px;
+        }
+        .price{
+            font-size: 14px;
+        }
+        .old-price{
+            font-size: 12px;
+        }
+        .add__cart-btn{
+            height: 35px;
+            margin: 10px auto 0;
+            font-size: 13px;
+            span{
+                margin-top: 8px;
+                font-size: 18px;
+            }
+        }
+    }
+    }
+    @media only screen and (max-width: 492px){
+        .products-title{
+            font-size: 24px;
+        }
+        .product__card-container{
+            gap: 25px 8px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .product-card{
+        max-width: 205px;
+        padding: .6rem .5rem;
+
+        img{
+            height: 135px;
+        }
+        .like-btn{
+            top: .2rem;
+            right: .4rem;
+            font-size: 23px;
+        }
+        .product-name{
+            margin:5px 0;
+            font-size: 13px;
+        }
+        span{
+            font-size: 11px;
+            padding: 3px 8px;
+            margin-bottom: 6px;
+        }
+        .price{
+            font-size: 13px;
+        }
+        .old-price{
+            font-size: 11px;
+        }
+        .add__cart-btn{
+            height: 30px;
+            margin: 10px auto 0;
+            font-size: 12px;
+            span{
+                margin-top: 6px;
+                font-size: 18px;
+            }
+        }
+    }
+    }
+
+    @media only screen and (max-width: 400px){
+        .products-title{
+            font-size: 22px;
+        }
+        .product__card-container{
+            gap: 22px 10px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .product-card{
+        max-width: 205px;
+        padding: .6rem .5rem;
+
+        img{
+            height: 112px;
+        }
+        .like-btn{
+            top: .2rem;
+            right: .4rem;
+            font-size: 21px;
+        }
+        .product-name{
+            margin:5px 0;
+            font-size: 12px;
+        }
+        span{
+            font-size: 10px;
+            padding: 2px 7px;
+            margin-bottom: 6px;
+        }
+        .price{
+            font-size: 13px;
+        }
+        .old-price{
+            font-size: 11px;
+        }
+        .add__cart-btn{
+            height: 30px;
+            margin: 10px auto 0;
+            font-size: 12px;
+            span{
+                margin-top: 6px;
+                font-size: 18px;
+            }
+        }
+    }
+    }
+    @media only screen and (max-width: 352px){
+        .products-title{
+            font-size: 22px;
+        }
+        .product__card-container{
+            gap: 22px 0px;
+            padding: 0;
+            place-items: center;
+            grid-template-columns:  1fr;
+        }
+        .product-card{
+            width: 100%;
+        max-width: 260px;
+        padding: .6rem .8rem;
+
+        img{
+            height: 145px;
+        }
+        .like-btn{
+            top: .2rem;
+            right: .4rem;
+            font-size: 25px;
+        }
+        .product-name{
+            margin:15px 0;
+            font-size: 14px;
+        }
+        span{
+            font-size: 12px;
+            padding: 3px 8px;
+            margin-bottom: 6px;
+        }
+        .price{
+            font-size: 14px;
+        }
+        .old-price{
+            font-size: 12px;
+        }
+        .add__cart-btn{
+            height: 35px;
+            margin: 10px auto 0;
+            font-size: 14px;
+            span{
+                margin-top: 6px;
+                font-size: 22px;
+            }
+        }
+    }
+    }
+
+    
 </style>
