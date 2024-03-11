@@ -142,10 +142,12 @@ export default {
         column-gap: 10px;
         padding: .1rem 0;
     }
+
     .logo-image{
         width: 110px;
         height: 42px;
     }
+
 
     .category-action{
         display: flex;
@@ -253,6 +255,8 @@ export default {
     // RESPONSIVE CONTENT STYLES
 
     .responsive__navigation{
+        background-color: var(--light-color) !important;
+        z-index: 10  !important;
         display: none;
     }
 
@@ -262,6 +266,7 @@ export default {
         align-items: center;
         justify-content: space-around;
         background-color: var(--light-color);
+        z-index: 5;
         padding: .5rem 1rem;
         width: 100%;
         height: 60px;

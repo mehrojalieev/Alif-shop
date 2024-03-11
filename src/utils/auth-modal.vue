@@ -8,10 +8,10 @@
         },
     }
 </script>
-
+    
 <template>
     <div @click="isOpenModal=false" :style="{display: isOpenModal ? 'block' : 'none'}"  class="modal-overlay">
-            <div class="auth-form">
+            <div @click.stop="isOpenModal" class="auth-form">
                 <div class="form-header">
                     <h3>Avtorizatsiya alif shop</h3>
                     <span @click="isOpenModal=false" class="material-symbols-outlined">close</span>
