@@ -10,6 +10,11 @@ const routes = createRouter({
             component: Home
         },
         {
+            path: '/product/:id',
+            name: "Single_Product",
+            component: () => import('../router/SingleProduct.vue')
+        },
+        {
             path: '/prayer-time',
             name: 'PrayerTime',
             component: () => import('../router/PrayerTime.vue')

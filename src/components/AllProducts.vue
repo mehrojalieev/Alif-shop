@@ -31,16 +31,24 @@ export default {
             <h2 class="products-title">Sizni qiziqtirishi mumkin</h2>
             <div class="product__card-container">
                     <div v-for="(product, index) in this.products_data" class="product-card" :key="index">
+                        <RouterLink  :key="index" class="product__card-link"
+                        :to="{
+                            name: 'Single_Product',
+                            query: {mahsulot: `${product.product_name}`},
+                             params: {id: `${product.id}`}
+                             }" >
                         <img :src="product.image[0]" :alt='product.product_name'>
                         <span class="material-symbols-outlined like-btn">favorite</span>
-                        <p class="product-name">Telefon {{product.product_name.slice(0, 30)}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom === null ? '' : product.memory_rom+'GB'}}</p>
+                        <p class="product-name"> {{product.product_name.slice(0, 30)}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom === null ? '' : product.memory_rom+'GB'}}</p>
                         <span>dan 200.000 so'm/oyiga</span>
                         <strong class="price old-price">{{product.price - product.price/10 +` so'm`}}</strong>
                         <strong class="price">{{product.price}} so'm</strong>
-                        <button class="add__cart-btn">
+                    </RouterLink>
+                        <button type="button" class="add__cart-btn">
                             <span class="material-symbols-outlined">shopping_cart</span>
                             Savatga
                         </button>
+
                     </div>
             </div>
         </div>
@@ -63,6 +71,7 @@ export default {
         margin-top: 30px;
         gap: 18px 20px;
     }
+
     .product-card{
         position: relative;
         max-width: 220px;
@@ -136,7 +145,10 @@ export default {
             }
         }
     }
-
+    .product__card-link{
+        text-decoration: none;
+        color: var(--dark-color)
+    }
     // RESPONSIVE STYLES
 
     @media only screen and (max-width: 1444px){
