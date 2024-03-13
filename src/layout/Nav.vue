@@ -59,6 +59,7 @@ export default {
                     <RouterLink to="cart" class="action-item">
                         <span class="material-symbols-outlined">shopping_cart</span>
                         <p>Savat</p>
+                        <strong :style="{display:this.$store.state.cart_data.length > 0 ? 'block' : 'none' }" class="count-cart">{{this.$store.state.cart_data && this.$store.state.cart_data.length}}</strong>
                     </RouterLink>
                     <RouterLink to="favorites" class="action-item favorite-item">
                         <span class="material-symbols-outlined">favorite</span>
@@ -224,6 +225,7 @@ export default {
         column-gap: 28px;
      
         .action-item{
+            position: relative;
             text-align: center;
             text-decoration: none;
             &:hover span{color: var(--warning-color);}
@@ -234,6 +236,20 @@ export default {
             p{
                 font-size: 13px;
                 color: var(--secondary-color);
+            }
+            .count-cart{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1px 8px;
+                top: -6px;
+                right: -3px;
+                font-weight: 500;
+                font-size: 11px;
+                color: var(--light-color);
+                border-radius: 50%;
+                position: absolute;
+                background-color: red;
             }
         }
         .auth-link{
