@@ -7,7 +7,7 @@ const store = createStore({
         liked_data: [],
         search_product: ''
     },
-    mutations:{
+    mutations:{ 
         AddToCart(state, payload){
             console.log(payload);
             state.cart_data = [...state.cart_data, payload]
@@ -17,7 +17,6 @@ const store = createStore({
             state.liked_data = [...state.liked_data, payload]
         },
         SearchedProduct(state, payload){
-            // console.log(payload);
             state.search_product = payload
         }
     }

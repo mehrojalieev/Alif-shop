@@ -14,7 +14,7 @@
 
 <template>
     <div>
-        <NavbarTop/>    
+        <!-- <NavbarTop/>     -->
         <Nav/>
         <Hero/>
         <AllProducts/>

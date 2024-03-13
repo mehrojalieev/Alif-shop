@@ -46,6 +46,9 @@
     <swiper-slide>
         <img src="../assets/banner5.png" alt="Banner">
     </swiper-slide>
+    <swiper-slide>
+        <img src="../assets/banner6.png" alt="Banner">
+    </swiper-slide>
    
     
   </swiper>

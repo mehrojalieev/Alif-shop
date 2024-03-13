@@ -16,8 +16,6 @@ export default {
     },
     mounted(){
         window.addEventListener('scroll', this.handleScroll)
-        
-
     },
     destroyed(){
         window.removeEventListener('scroll', this.handleScroll)
@@ -28,7 +26,7 @@ export default {
         },
         handleScroll(){
             const scrollPosition = window.screenY || window.pageYOffset
-            if(scrollPosition > 30){
+            if(scrollPosition > 45){
                 this.isFixed = true;
             } else{
                 this.isFixed = false
@@ -36,6 +34,7 @@ export default {
         },
         SearchingProduct(){
             this.$store.commit('SearchedProduct', this.input_value)
+            this.input_value = ''
         }
     }
 }
@@ -161,7 +160,7 @@ export default {
         justify-content: center;
         column-gap: 5px;
         background-color: var(--warning-color);
-        padding: 10px  11px;
+        padding: 9px  11px;
         min-width: 200px;
         border-radius: 8px;
         transition: 0.2s;
@@ -170,14 +169,14 @@ export default {
             background-color: var(--warning-hover-color);
         }
         p{
-            font-size: 16px;
+            font-size: 15px;
             color: var(--dark-color);
         }
     }
     .search-form{
         width: 100%;
         max-width: 570px;
-        height: 50px;
+        height: 45px;
         display: flex;
         border-radius: 8px;
         align-items: center;
