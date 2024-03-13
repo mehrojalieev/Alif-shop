@@ -28,6 +28,12 @@ const routes = createRouter({
             path: '/favorites',
             name: 'Favorites',
             component: () => import('@/router/Favorite.vue')
+        },
+        {
+
+            path: '/:catchAll(.*)',
+            name: "NotFound",
+            component: () => import('@/router/NotFound.vue')
         }
     ]
 })
