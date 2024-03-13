@@ -1,12 +1,12 @@
 <script>
     import 'swiper/css';
     import 'swiper/css/navigation';
+    import Card from "@/utils/Card.vue"
     import ApiInstance from "@/api/index"
     import { RouterLink } from "vue-router"
     import { Navigation } from 'swiper/modules';
     import Container from "@/utils/Container.vue"
     import { Swiper, SwiperSlide } from 'swiper/vue';
-    import Card from "@/utils/Card.vue"
 
     export default {
         components: {Container, Swiper, SwiperSlide, Card},
@@ -17,11 +17,11 @@
         },
         data(){
             return {
-                single_product: [],
-                trending_products: [],
+                isExict: false,
                 main_image: '',
+                single_product: [],
                 isFocusVariant: false,
-                isExict: false
+                trending_products: [],
             }
         },
        
@@ -29,7 +29,6 @@
             Load_SingleProduct(){
                 ApiInstance.get(`/products/${this.$route.params.id}`)
                 .then(response => {
-                    // console.log(response.data);
                     this.single_product = response.data[0]
                 })
             },
@@ -76,7 +75,7 @@
                  </swiper>
             </div>
             <div class="single__carousel-main">
-                <swiper  :modules="modules" class="mySwiper">
+                <swiper :navigation="true"  :modules="modules" class="mySwiper">
                  <swiper-slide v-for="variant_image in this.single_product.image">
                     <img :src="this.main_image ? this.main_image : variant_image " alt="Asosiy Rasm">
                  </swiper-slide>
