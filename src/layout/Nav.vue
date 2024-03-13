@@ -6,7 +6,7 @@ export default {
     components:{Container, authModal},
     data(){
         return {
-        isFixed: false,
+         isFixed: false,
             isOpenModal: false,
             openCategory: false,
             openClearBtn: false,
@@ -16,6 +16,8 @@ export default {
     },
     mounted(){
         window.addEventListener('scroll', this.handleScroll)
+        
+
     },
     destroyed(){
         window.removeEventListener('scroll', this.handleScroll)
@@ -31,6 +33,9 @@ export default {
             } else{
                 this.isFixed = false
             }
+        },
+        SearchingProduct(){
+            this.$store.commit('SearchedProduct', this.input_value)
         }
     }
 }
@@ -48,8 +53,8 @@ export default {
                     <span v-else class="material-symbols-outlined">menu</span>
                     <p>Tovarlar katalogi</p>
                 </div>
-                <form  class="search-form">
-                    <input  @focus="openClearBtn=true"  v-model="input_value" type="text" placeholder="Tovarlarni izlash">
+                <form @submit.prevent="SearchingProduct"  class="search-form">
+                    <input  @focus="openClearBtn=true"   v-model="input_value"  type="text" placeholder="Tovarlarni izlash">
                     <span :style="{display: openClearBtn ? 'block' : 'none'}" @click="clearInput"  class="material-symbols-outlined clear__input-btn">close</span>
                     <button type="submit">
                         <span  class="material-symbols-outlined">search</span>

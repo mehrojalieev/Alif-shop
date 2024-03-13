@@ -6,8 +6,9 @@
         export default{
             components: {
                 Hero,
-                AllProducts
-            }
+                AllProducts,
+                NavbarTop
+            },
         }
 </script>
 

@@ -7,24 +7,35 @@ export default {
     data(){
         return {
             products_data:[],
-            isExict: false
+            isExict: false,
+            inputValue: ''
         }
     },
    
     methods: {
-        LoadPRoducts(){
-            ApiInstance.get('/products')
-            .then(response => {
-                console.log(response.data);
-                this.products_data = response?.data
-            })
-        },
-        
+        async loadProducts() {
+      try {
+        const searchParam = this.$store.state.search_product ? '/search/' + this.$store.state.search_product : '';
+        const response = await ApiInstance.get(`/products${searchParam}`);
+        this.products_data = response?.data || [];
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
+    }
     },
     mounted(){
-        console.log();
-        this.LoadPRoducts()
+        this.inputValue = this.$store.state.search_product
+        this.loadProducts()
+    },
+    watch: {
+    '$store.state.search_product': {
+      handler(newValue) {
+        this.inputValue = newValue;
+        this.loadProducts();
+      },
+      immediate: true
     }
+},
 }
 </script>
 

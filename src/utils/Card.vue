@@ -21,6 +21,12 @@
             else{
                 console.log(false);
             }
+        },
+        AddToFavorite(product){
+            console.log(product);
+        },
+        handleButtonClick(event){
+            event.stopPropogation()
         }
         }
     }
@@ -28,19 +34,19 @@
 
 <template>
     <div class="product-card">
-                        <RouterLink  :key="product.id" class="product__card-link"
+                        <router-link onclick.native.stop  :key="product.id" class="product__card-link"
                         :to="{
                             name: 'Single_Product',
                             query: { category: `${product.category}`,mahsulot: `${product.product_name}`},
                              params: {id: `${product.id}`}
                              }" >
                         <img :src="product.image[0]" :alt='product.product_name'>
-                        <span class="material-symbols-outlined like-btn">favorite</span>
+                        <span  @click.stop="AddToFavorite(product); handleButtonClick($event)" class="material-symbols-outlined like-btn">favorite</span>
                         <p class="product-name"> {{product.product_name.slice(0, 30)}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom === null ? '' : product.memory_rom+'GB'}}</p>
                         <span>dan 200.000 so'm/oyiga</span>
                         <strong class="price old-price">{{product.price - product.price/10 +` so'm`}}</strong>
                         <strong class="price">{{product.price}} so'm</strong>
-                    </RouterLink>
+                        </router-link>
                         <button v-if="isExict">Count +</button>
                         <button v-else @click="AddProductCart(product)" type="button" class="add__cart-btn">
                             <span class="material-symbols-outlined">shopping_cart</span>
