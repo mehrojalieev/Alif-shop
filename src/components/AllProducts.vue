@@ -1,11 +1,13 @@
 <script>
 import Container from '@/utils/Container.vue'
 import ApiInstance from '@/api'
+import Card from '@/utils/Card.vue'
 export default {
-    components:{Container},
+    components:{Container, Card},
     data(){
         return {
-            products_data:[]
+            products_data:[],
+            isExict: false
         }
     },
    
@@ -16,9 +18,11 @@ export default {
                 console.log(response.data);
                 this.products_data = response?.data
             })
-        }
+        },
+        
     },
     mounted(){
+        console.log();
         this.LoadPRoducts()
     }
 }
@@ -30,26 +34,7 @@ export default {
         <div class="all__products-wrapper">
             <h2 class="products-title">Sizni qiziqtirishi mumkin</h2>
             <div class="product__card-container">
-                    <div v-for="(product, index) in this.products_data" class="product-card" :key="index">
-                        <RouterLink  :key="index" class="product__card-link"
-                        :to="{
-                            name: 'Single_Product',
-                            query: {mahsulot: `${product.product_name}`},
-                             params: {id: `${product.id}`}
-                             }" >
-                        <img :src="product.image[0]" :alt='product.product_name'>
-                        <span class="material-symbols-outlined like-btn">favorite</span>
-                        <p class="product-name"> {{product.product_name.slice(0, 30)}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom === null ? '' : product.memory_rom+'GB'}}</p>
-                        <span>dan 200.000 so'm/oyiga</span>
-                        <strong class="price old-price">{{product.price - product.price/10 +` so'm`}}</strong>
-                        <strong class="price">{{product.price}} so'm</strong>
-                    </RouterLink>
-                        <button type="button" class="add__cart-btn">
-                            <span class="material-symbols-outlined">shopping_cart</span>
-                            Savatga
-                        </button>
-
-                    </div>
+                <Card :product="product" v-for="product in this.products_data"/>
             </div>
         </div>
     </Container>

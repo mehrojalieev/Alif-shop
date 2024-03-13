@@ -6,9 +6,10 @@
     import { Navigation } from 'swiper/modules';
     import Container from "@/utils/Container.vue"
     import { Swiper, SwiperSlide } from 'swiper/vue';
+    import Card from "@/utils/Card.vue"
 
     export default {
-        components: {Container, Swiper, SwiperSlide},
+        components: {Container, Swiper, SwiperSlide, Card},
         setup() {
             return {
               modules: [Navigation],
@@ -17,25 +18,46 @@
         data(){
             return {
                 single_product: [],
+                trending_products: [],
                 main_image: '',
-                isFocusVariant: false
+                isFocusVariant: false,
+                isExict: false
             }
         },
-        mounted(){
-            this.Load_SingleProduct()
-            // console.log(this.Variants);
-        },
+       
         methods:{
             Load_SingleProduct(){
                 ApiInstance.get(`/products/${this.$route.params.id}`)
                 .then(response => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.single_product = response.data[0]
+                })
+            },
+            Trending_Category(){
+                ApiInstance.get(`/products/category/${this.$route.query.category}`)
+                .then(response => {
+                    this.trending_products = response.data
+                    console.log(response.data)
                 })
             },
             handleAddVariant(variant){
                 this.main_image = variant
+            },
+            methods:{
+            AddProductCart(product){
+            this.$store.commit('AddToCart', product)
+            if(this.$store.state.cart_data.filter(f => product.id)){
+                this.isExict = true
             }
+            else{
+                console.log(false);
+            }
+        }
+        }
+        },
+        mounted(){
+            this.Load_SingleProduct()
+            this.Trending_Category()
         }
     }
 </script>
@@ -60,6 +82,8 @@
                  </swiper-slide>
          </swiper>
             </div>
+
+
         </div>
 
         
@@ -103,6 +127,21 @@
         </div>
        
         </div>
+
+        <div class="trending__category-wrapper">
+            <h3 class="category-title">Sizni qiziqtirishi mumkin</h3>
+            <swiper
+            :space-between="30"
+             :navigation="true"
+              :modules="modules"
+               class="mySwiper category-swiper"
+               >
+    <swiper-slide v-for="category_item in this.trending_products " class="category__card-slide">
+        <Card :product="category_item"/>
+    </swiper-slide>
+    
+  </swiper>
+        </div>
     </Container>
 </template>
 
@@ -115,6 +154,12 @@
     font-weight: 600;
     color: #2020d3a9;
     font-size: 18px;
+    text-decoration: none;
+}
+.category-title{
+    font-weight: 600;
+    color: var(--dark-color);
+    font-size: 28px;
     text-decoration: none;
 }
     .single__product-wrapper{
@@ -170,7 +215,7 @@
         /* align-items: center; */
         width: 100%;
         max-width: 450px;
-        height: 440px;
+        height: 450px;
     }
 
     .single__carousel-main > .swiper {
@@ -322,5 +367,18 @@
                 font-size: 26px;
             }
         }
+    }
+
+
+    /* TRENDING CATEGORIES SWIPER STYLES */
+
+    .category-swiper{
+        margin-top: 40px;
+    }
+    .trending__category-wrapper{
+        margin-top: 100px;
+    }
+    .category__card-slide{
+        max-width: 220px;
     }
 </style>
