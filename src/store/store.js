@@ -9,7 +9,7 @@ const store = createStore({
     },
     mutations:{ 
         AddToCart(state, payload){
-            console.log(payload);
+            // console.log(payload);
             state.cart_data = [...state.cart_data, payload]
         },
         AddToLiked(state, payload){

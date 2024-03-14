@@ -1,12 +1,22 @@
 <script>
     import Container from '@/utils/Container.vue'
 import { RouterLink } from 'vue-router';
+import Card from "@/utils/Card.vue"
+    export default {
+        components:{Container, Card}
+    }
 </script>
 
 <template>
     <Container>
         <div class="cart">
-            <div class="empty__cart-wrapper">
+            <div v-if="this.$store.state.liked_data.length > 0" class="liked__product-wrapper">
+                <h2>Saralanganlar</h2>
+                <div class="liked__card-container">
+                    <Card :product="product" v-for="product in this.$store.state.liked_data"/>
+                </div>
+        </div>
+            <div v-else class="empty__cart-wrapper">
                 <div class="empty-content">
                     <h3>Saralangan mahsulotlar ro'yxati xozircha bo'sh</h3>
                     <p>uzoq vaqt qidirmaslik uchun o'zingizga yoqqan tovarlarni saqlang</p>
@@ -17,7 +27,16 @@ import { RouterLink } from 'vue-router';
     </Container>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" >
+  .liked__product-wrapper{
+        margin-top: 2rem;
+        width: 100%;
+    }
+    .liked__card-container{
+        display: grid;
+        gap: 20px 10px;
+        grid-template-columns: repeat(5, 1fr);
+    }
     .empty__cart-wrapper{
         width: 100%;
         margin-top: 100px;

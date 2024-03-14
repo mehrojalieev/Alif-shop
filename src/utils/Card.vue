@@ -23,30 +23,37 @@
             }
         },
         AddToFavorite(product){
-            console.log(product);
+            this.$store.commit('AddToLiked', product)
+            console.log(this.$store.state.liked_data)
+            if(this.$store.state?.liked_data.findIndex(f => f.id == product.id)!= -1){
+                console.log(product);
+                console.log('Qizil');
+            }
         },
-        handleButtonClick(event){
-            event.stopPropogation()
-        }
-        }
+        
+        // handleButtonClick(event){
+        //     event.stopPropogation()
+        // }
+        },
     }
 </script>
 
 <template>
     <div class="product-card">
-                        <router-link onclick.native.stop  :key="product.id" class="product__card-link"
+                        <!-- <router-link onclick.native.stop  :key="product.id" class="product__card-link"
                         :to="{
                             name: 'Single_Product',
                             query: { category: `${product.category}`,mahsulot: `${product.product_name}`},
                              params: {id: `${product.id}`}
-                             }" >
+                             }" > -->
                         <img :src="product.image[0]" :alt='product.product_name'>
-                        <span  @click.stop="AddToFavorite(product); handleButtonClick($event)" class="material-symbols-outlined like-btn">favorite</span>
+                        <span  v-if="this.$store.state?.liked_data.findIndex(f => f.id == product.id)!= -1" class="material-symbols-outlined like-btn liked-btn" >favorite</span>
+                        <span v-else   @click="AddToFavorite(product)" class="material-symbols-outlined like-btn ">favorite</span>
                         <p class="product-name"> {{product.product_name.slice(0, 30)}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom === null ? '' : product.memory_rom+'GB'}}</p>
                         <span>dan 200.000 so'm/oyiga</span>
                         <strong class="price old-price">{{product.price - product.price/10 +` so'm`}}</strong>
                         <strong class="price">{{product.price}} so'm</strong>
-                        </router-link>
+                        <!-- </router-link> -->
                         <button v-if="isExict">Count +</button>
                         <button v-else @click="AddProductCart(product)" type="button" class="add__cart-btn">
                             <span class="material-symbols-outlined">shopping_cart</span>
@@ -80,6 +87,10 @@
             border-radius: 30%;
             font-size: 23px;
         }
+        .liked-btn{
+            color: red;
+        }
+        
         .product-name{
             margin:8px 0;
             height: 40px;
