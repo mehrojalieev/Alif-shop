@@ -9,7 +9,6 @@ const store = createStore({
     },
     mutations:{ 
         AddToCart(state, payload){
-            // console.log(payload);
             state.cart_data = [...state.cart_data, payload]
         },
         AddToLiked(state, payload){
@@ -18,6 +17,11 @@ const store = createStore({
         },
         SearchedProduct(state, payload){
             state.search_product = payload
+        },
+
+        RemoveProductFromFavorite(state, payload){
+                console.log('Id true');
+                state.liked_data = state.liked_data.filter(f => f.id !== payload.id)
         }
     }
 })

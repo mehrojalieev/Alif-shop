@@ -60,9 +60,14 @@ export default {
       this.$store.commit('AddToCart', product);
       this.isExist = this.$store.state.cart_data.some(item => item.id === product.id);
     },
-    AddLikedCart(product){
-        this.$store.commit("AddToLiked", product)
-    }
+    AddToFavorite(product){
+            this.$store.commit('AddToLiked', product)
+            if(this.$store.state?.liked_data.findIndex(f => f.id == product.id)!= -1){
+            }
+        },
+    RemoveFromFavorite(){
+            this.$store.commit('RemoveProductFromFavorite', this.single_product)
+        }
   },
   mounted() {
     this.scrollToTop()
@@ -159,8 +164,9 @@ export default {
                     <span class="material-symbols-outlined">shopping_cart</span>
                     Savatga qo'shish
                 </button>
-                <button @click="AddLikedCart(single_product)" class="add__favorite-btn">
-                    <span class="material-symbols-outlined">favorite</span>
+                <button  class="add__favorite-btn">
+                    <span   v-if="this.$store.state?.liked_data.findIndex(f => f.id == this.single_product.id)!= -1" @click="RemoveFromFavorite" class="material-symbols-outlined like-btn liked-btn" >heart_minus</span>
+                        <span v-else   @click="AddToFavorite(this.single_product)" class="material-symbols-outlined like-btn ">heart_plus</span>
                 </button>
             </div>
         </div>
@@ -391,6 +397,9 @@ export default {
             }
             span{
                 font-size: 26px;
+            }
+            .like-btn{
+                color: var(--danger-color);
             }
         }
     }
