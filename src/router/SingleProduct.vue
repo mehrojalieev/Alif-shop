@@ -102,6 +102,7 @@ export default {
 
      <Swiper
             :style="{ '--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff', }"
+            :slides-per-view="1"
             :spaceBetween="10"
             :navigation="true"
             :thumbs="{ swiper: thumbsSwiper }" 
@@ -199,8 +200,6 @@ export default {
         width: 100%;
         margin-top: 3rem;
      }
-
-
     .single__carousel-wrapper{
         display: flex;
         max-width: 600px;
@@ -211,7 +210,6 @@ export default {
     .variants__swiper-carousel{
         width: 110px;
         height: 350px;
-        /* padding: 1rem; */
         overflow: auto;
     }
 
@@ -258,7 +256,6 @@ export default {
         }
     }
 
-
     /* -------------------------- */
 
     .single__product-content{
@@ -291,7 +288,6 @@ export default {
             font-size: 22px;
             font-weight: 500;
         }
-    }
     .price__info-content{
         margin-top: 30px;
         display: flex;
@@ -393,8 +389,7 @@ export default {
             }
         }
     }
-
-
+}
     /* TRENDING CATEGORIES SWIPER STYLES */
 
     .category-swiper{
@@ -405,5 +400,415 @@ export default {
     }
     .category__card-slide{
         max-width: 220px;
+    }
+
+
+    /* !!!!    RESPONSIVE STYLES */
+
+    @media only screen and (max-width: 1000px){
+        .variants__swiper-carousel{
+        width: 90px;
+        height: 350px;
+    }
+    .variants__swiper-carousel .swiper .swiper-wrapper .swiper-slide{
+        img{
+            width: 60px;
+            height: 60px;
+            padding: 0;
+        }
+    }
+        
+        .main__swiper-carousel{
+        max-width: 420px;
+        max-height: 410px !important;
+    }
+    .main__swiper-carousel .swiper .swiper-wrapper{
+        .swiper-slide{
+            img{
+                padding: 0 .6rem;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+        .single__product-content{  
+        .product-name{
+            margin-top: 15px;
+            font-size: 22px;
+        }
+    .price__info-content{
+        margin-top: 26px;
+        column-gap: 20px;
+    }
+    .term__price-content{
+        span{
+            font-size: 13px;
+        }
+        p{
+            font-size: 19px;
+        }
+    }
+    .main__price-content{
+        span{
+            font-size: 13px;
+        }
+        p{
+            font-size: 19px;
+        }
+    }
+    .monthly-payment{
+        margin-top: 18px;
+        height: 45px;
+        padding: 2px;
+        button{
+            max-width: 70px;
+            font-size: 16px;
+         
+        }
+    }
+    .content-actions{
+        margin-top: 1.6rem;
+        column-gap: .6rem;
+        .add__cart-btn{
+            column-gap: .4rem;
+            font-size: 14px;
+            max-width: 280px;
+            padding: .8rem 0;
+           
+            span{
+                font-size: 20px;
+            }
+        }
+        .add__favorite-btn{
+            padding:  .2rem .6rem;
+          
+            span{
+                font-size: 24px;
+            }
+        }
+    }
+}
+    }
+    @media only screen and (max-width: 911px){
+        .variants__swiper-carousel{
+        width: 80px;
+        height: 310px;
+    }
+    .variants__swiper-carousel .swiper .swiper-wrapper .swiper-slide{
+        img{
+            width: 55px;
+            height: 55px;
+            padding: 0;
+        }
+    }
+        
+        .main__swiper-carousel{
+        max-width: 350px;
+        max-height: 410px !important;
+    }
+    .main__swiper-carousel .swiper .swiper-wrapper{
+        .swiper-slide{
+            img{
+                padding: 0 .7rem;
+            }
+        }
+    }
+        .single__product-content{  
+        .product-name{
+            margin-top: 15px;
+            font-size: 22px;
+        }
+    .price__info-content{
+        margin-top: 26px;
+        column-gap: 20px;
+    }
+    .term__price-content, .main__price-content{
+        span{
+            font-size: 12px;
+        }
+        p{
+            font-size: 17px;
+        }
+    }
+   
+}
+    }
+
+    @media only screen and (max-width: 840px){
+        .category__card-slide{
+            margin-right: 10px !important;
+        }
+        .category__card-slide > .product-card{
+            max-width: 200px;
+        padding: .5rem .6rem;
+            img{
+            width: 100%;
+            height: 135px;
+        }
+        .like-btn{
+            top: .4rem;
+            right: .6rem;
+            font-size: 21px;
+        }
+        .product-name{
+            margin:12px 0;
+            height: 40px;
+            font-size: 13px;
+        }
+        span{
+            font-size: 11px;
+            padding: 2px 6px;
+        }
+        .old-price{
+            font-size: 12px !important;
+        }
+        .price{
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .add__cart-btn{
+            height: 32px;
+            span{
+                font-size: 20px;
+            }
+        }
+        }
+    }
+
+    @media only screen and (max-width: 819px){
+            .main__swiper-carousel{
+        max-width: 330px;
+        max-height: 410px !important;
+     }
+        .single__product-content{
+        .term__price-content, .main__price-content{
+        span{
+            font-size: 11px;
+        }
+        p{
+            font-size: 15px;
+        }
+    }
+        }
+       
+    }
+
+    @media only screen and (max-width: 767px){
+
+        .redirect-title{    
+            display: none;
+        }
+        .variants__swiper-carousel{
+            display: none;
+        }
+        .single__product-wrapper{
+            flex-direction: column;
+        }
+        .main__swiper-carousel{
+        max-width: 930px;
+        max-height: 410px !important;
+    }
+    .single__carousel-wrapper{
+        margin: auto;
+    }
+    .main__swiper-carousel > .swiper .swiper-wrapper{
+        max-width: 400px;
+        margin: auto;
+    }
+    .main__swiper-carousel > .swiper .swiper-wrapper .swiper-slide{
+        max-width: 450px;
+        img{
+            padding: 1rem;
+        }
+    }
+    .single__product-content{
+        .price__info-content{
+            max-width: 500px;
+            column-gap: 10px;
+            justify-content: space-between;
+            .term__price-content, .main__price-content{
+                span{
+                    font-size: 14px;
+                }
+                p{
+                    margin-top: 5px;
+                    font-size: 20px;
+                }
+            }
+        }
+        .monthly-payment{
+        margin-top: 18px;
+        height: 48px;
+        padding: 2px;
+        button{
+            max-width: 270px;
+            font-size: 16px;
+         
+        }
+    }
+        .content-actions{
+            width: 100%;
+            padding: .8rem 1rem;
+            background-color:var(--light-color) !important;
+            position: fixed;
+            left: 0;
+            bottom: 1px;
+            z-index: 1000 !important; 
+            .add__cart-btn{
+            z-index: 1000 !important;
+                padding: .7rem 0;
+             margin: auto;
+             font-size: 16px;
+             max-width: 700px;
+            span{
+                font-size: 22px;
+            }
+        }
+        .add__favorite-btn{
+            display: none;
+            padding:  .2rem .6rem;
+          
+            span{
+                font-size: 24px;
+            }
+        }
+    }
+    }
+    }
+
+    @media only screen and (max-width:500px){
+        .main__swiper-carousel{
+        max-width: 350px;
+        max-height: 440px !important;
+    }
+    .main__swiper-carousel > .swiper .swiper-wrapper{
+        max-width: 370px;
+        margin: auto;
+    }
+    .main__swiper-carousel > .swiper .swiper-wrapper .swiper-slide{
+        max-width: 450px;
+        img{
+            padding: 1rem;
+        }
+    }
+    .single__product-content{
+        margin-top: 1rem;
+        .price__info-content{
+            max-width: 500px;
+            column-gap: 10px;
+            justify-content: space-between;
+            .term__price-content, .main__price-content{
+                span{
+                    font-size: 13px;
+                }
+                p{
+                    margin-top: 5px;
+                    font-size: 18px;
+                }
+            }
+        }
+        .monthly-payment{
+        margin-top: 18px;
+        height: 48px;
+        padding: 2px;
+        button{
+            max-width: 270px;
+            font-size: 16px;
+         
+        }
+    }
+        .content-actions{
+            padding: .8rem 1rem;
+    
+    }
+    }
+    .category-title{
+        font-size: 24px;
+    }
+    }
+    @media only screen and (max-width:382px){
+        .main__swiper-carousel{
+        max-width: 300px;
+        max-height: 400px !important;
+    }
+    .main__swiper-carousel > .swiper .swiper-wrapper{
+        max-width: 370px;
+        margin: auto;
+    }
+    .main__swiper-carousel > .swiper .swiper-wrapper .swiper-slide{
+        max-width: 450px;
+        img{
+            padding: 1rem;
+        }
+    }
+    .single__product-content{
+        .price__info-content{
+            column-gap: 10px;
+            justify-content: space-between;
+            .term__price-content, .main__price-content{
+                span{
+                    font-size: 12px;
+                }
+                p{
+                    margin-top: 5px;
+                    font-size: 16px;
+                }
+            }
+        }
+        .monthly-payment{
+        margin-top: 18px;
+        height: 42px;
+        padding: 2px;
+        button{
+            max-width: 270px;
+            font-size: 15px;
+         
+        }
+    }
+        .content-actions{
+            padding: .8rem 1rem;
+    
+    }
+    }
+    .category-title{
+        font-size: 24px;
+    }
+    }
+    @media only screen and (max-width: 338px){
+        .single__product-content{
+            .product-name{
+                font-size: 19px;
+            }
+        .price__info-content{
+            column-gap: 10px;
+            justify-content: space-between;
+            .term__price-content, .main__price-content{
+                span{
+                    font-size: 12px;
+                }
+                p{
+                    margin-top: 1px;
+                    font-size: 15px;
+                }
+            }
+        }
+        .monthly-payment{
+        margin-top: 18px;
+        height: 42px;
+        padding: 2px;
+        button{
+            max-width: 270px;
+            font-size: 15px;
+         
+        }
+    }
+        .content-actions{
+            padding: .8rem 1rem;
+    
+    }
+    }
+    .category-title{
+        font-size: 18px;
+    }
     }
 </style>
