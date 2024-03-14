@@ -66,6 +66,7 @@ export default {
                         <strong :style="{display:this.$store.state.cart_data.length > 0 ? 'block' : 'none' }" class="count-cart">{{this.$store.state.cart_data && this.$store.state.cart_data.length}}</strong>
                     </RouterLink>
                     <RouterLink to="favorites" class="action-item favorite-item">
+                        <strong :style="{display:this.$store.state.liked_cart?.length > 0 ? 'block' : 'none' }" class="count-like">1</strong>
                         <span class="material-symbols-outlined">favorite</span>
                         <p>Saralanganlar</p>
                     </RouterLink>
@@ -104,11 +105,11 @@ export default {
                     <span class="material-symbols-outlined">manage_search</span>
                     <p>Katalog</p>
                 </Router>
-                <RouterLink class="item-link" to="cart">
+                <RouterLink class="item-link" to="/cart">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     <p>Savat</p>
                 </RouterLink>
-                <RouterLink class="item-link" to="favorites">
+                <RouterLink class="item-link" to="/favorites">
                     <span class="material-symbols-outlined">favorite</span>
                     <p>Saralanganlar</p>
                 </RouterLink>
@@ -253,6 +254,21 @@ export default {
                 color: var(--light-color);
                 border-radius: 50%;
                 position: absolute;
+                background-color: red;
+            }
+            .count-like{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0px 7px;
+                top: -8%;
+                right: 27%;
+                font-weight: 500;
+                font-size: 11px;
+                color: var(--light-color);
+                border-radius: 50%;
+                position: absolute;
+                color: transparent;
                 background-color: red;
             }
         }

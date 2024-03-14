@@ -23,12 +23,16 @@
             }
         },
         AddToFavorite(product){
-            console.log(product);
+            this.$store.commit('AddToLiked', product)
+            if(this.$store.state?.liked_data.findIndex(f => f.id == product.id)!= -1){
+            }
         },
-        handleButtonClick(event){
-            event.stopPropogation()
+        RemoveFromFavorite(product){
+            this.$store.commit('RemoveProductFromFavorite', product)
         }
-        }
+        
+       
+        },
     }
 </script>
 
@@ -41,7 +45,8 @@
                              params: {id: `${product.id}`}
                              }" >
                         <img :src="product.image[0]" :alt='product.product_name'>
-                        <span  @click.stop="AddToFavorite(product); handleButtonClick($event)" class="material-symbols-outlined like-btn">favorite</span>
+                        <span   v-if="this.$store.state?.liked_data.findIndex(f => f.id == product.id)!= -1" @click="RemoveFromFavorite(product)" class="material-symbols-outlined like-btn liked-btn" >heart_minus</span>
+                        <span v-else   @click="AddToFavorite(product)" class="material-symbols-outlined like-btn ">heart_plus</span>
                         <p class="product-name"> {{product.product_name.slice(0, 30)}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom === null ? '' : product.memory_rom+'GB'}}</p>
                         <span>dan 200.000 so'm/oyiga</span>
                         <strong class="price old-price">{{product.price - product.price/10 +` so'm`}}</strong>
@@ -79,7 +84,15 @@
             background: transparent;
             border-radius: 30%;
             font-size: 23px;
+            cursor: pointer;
+            &:active{
+                transform: scale(0.95);
+            }
         }
+        .liked-btn{
+            color: var(--danger-color);
+        }
+        
         .product-name{
             margin:8px 0;
             height: 40px;

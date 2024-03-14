@@ -34,14 +34,12 @@ export default {
     };
   },
   methods: {
-    // setFocused(index) {
-    //   this.focusedIndex = index;
-    // },
-    // focusedStyle(index) {
-    //   return {
-    //     border: index === this.focusedIndex ? '2px solid red' : 'none'
-    //   };
-    // },
+    scrollToTop () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+    },
     async loadSingleProduct() { 
       try {
         const response = await ApiInstance.get(`/products/${this.$route.params.id}`);
@@ -61,11 +59,23 @@ export default {
     addProductCart(product) {
       this.$store.commit('AddToCart', product);
       this.isExist = this.$store.state.cart_data.some(item => item.id === product.id);
-    }
+    },
+    AddToFavorite(product){
+            this.$store.commit('AddToLiked', product)
+            if(this.$store.state?.liked_data.findIndex(f => f.id == product.id)!= -1){
+            }
+        },
+    RemoveFromFavorite(){
+            this.$store.commit('RemoveProductFromFavorite', this.single_product)
+        }
   },
   mounted() {
+    this.scrollToTop()
     this.loadSingleProduct();
     this.loadTrendingProducts();
+  },
+  updated(){
+    this.loadSingleProduct()
   }
 };
 </script>
@@ -100,21 +110,21 @@ export default {
                 <!-- MAIN SWIPER IMAGE -->
                 <div class="main__swiper-carousel">
 
-     <Swiper
-            :style="{ '--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff', }"
-            :slides-per-view="1"
-            :spaceBetween="10"
-            :navigation="true"
-            :thumbs="{ swiper: thumbsSwiper }" 
-            :modules="modules"
-            class="mySwiper2"
-  >
-    <SwiperSlide v-for="(main_image, index) in single_product.image" :key="index">
-        <img :src="main_image" />
-    </SwiperSlide>
+             <Swiper
+                  :style="{ '--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff', }"
+                  :slides-per-view="1"
+                  :spaceBetween="10"
+                  :navigation="true"
+                  :thumbs="{ swiper: thumbsSwiper }" 
+                  :modules="modules"
+                  class="mySwiper2"
+                >
+        	    <SwiperSlide v-for="(main_image, index) in single_product.image" :key="index">
+        	        <img :src="main_image" />
+        	    </SwiperSlide>
     
-</Swiper>
-</div>
+             </Swiper>
+        </div>
 
  
          </div>
@@ -154,8 +164,9 @@ export default {
                     <span class="material-symbols-outlined">shopping_cart</span>
                     Savatga qo'shish
                 </button>
-                <button class="add__favorite-btn">
-                    <span class="material-symbols-outlined">favorite</span>
+                <button  class="add__favorite-btn">
+                    <span   v-if="this.$store.state?.liked_data.findIndex(f => f.id == this.single_product.id)!= -1" @click="RemoveFromFavorite" class="material-symbols-outlined like-btn liked-btn" >heart_minus</span>
+                        <span v-else   @click="AddToFavorite(this.single_product)" class="material-symbols-outlined like-btn ">heart_plus</span>
                 </button>
             </div>
         </div>
@@ -165,7 +176,7 @@ export default {
         <div class="trending__category-wrapper">
             <h3 class="category-title">Sizni qiziqtirishi mumkin</h3>
             <Swiper :space-between="30" :navigation="true" class="mySwiper category-swiper">
-                <SwiperSlide v-for="(category_item, index) in trending_products" :key="index" class="category__card-slide">
+                <SwiperSlide @click="scrollToTop" v-for="(category_item, index) in trending_products" :key="index" class="category__card-slide">
                     <Card :product="category_item"/>
                 </SwiperSlide>
             </Swiper>
@@ -386,6 +397,9 @@ export default {
             }
             span{
                 font-size: 26px;
+            }
+            .like-btn{
+                color: var(--danger-color);
             }
         }
     }
