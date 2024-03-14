@@ -1,90 +1,124 @@
 <script>
-    import 'swiper/css';
-    import 'swiper/css/navigation';
-    import Card from "@/utils/Card.vue"
-    import ApiInstance from "@/api/index"
-    import { RouterLink } from "vue-router"
-    import { Navigation } from 'swiper/modules';
-    import Container from "@/utils/Container.vue"
-    import { Swiper, SwiperSlide } from 'swiper/vue';
+import { ref } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import Card from '@/utils/Card.vue';
+import Container from '@/utils/Container.vue'; 
+import ApiInstance from '@/api';
+import 'swiper/css';
 
-    export default {
-        components: {Container, Swiper, SwiperSlide, Card},
-        setup() {
-            return {
-              modules: [Navigation],
-            };
-        },
-        data(){
-            return {
-                isExict: false,
-                main_image: '',
-                single_product: [],
-                isFocusVariant: false,
-                trending_products: [],
-            }
-        },
-       
-        methods:{
-            Load_SingleProduct(){
-                ApiInstance.get(`/products/${this.$route.params.id}`)
-                .then(response => {
-                    this.single_product = response.data[0]
-                })
-            },
-            Trending_Category(){
-                ApiInstance.get(`/products/category/${this.$route.query.category}`)
-                .then(response => {
-                    this.trending_products = response.data
-                    console.log(response.data)
-                })
-            },
-            handleAddVariant(variant){
-                this.main_image = variant
-            },
-            methods:{
-            AddProductCart(product){
-            this.$store.commit('AddToCart', product)
-            if(this.$store.state.cart_data.filter(f => product.id)){
-                this.isExict = true
-            }
-            else{
-                console.log(false);
-            }
-        }
-        }
-        },
-        mounted(){
-            this.Load_SingleProduct()
-            this.Trending_Category()
-        }
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+export default {
+  components: { Container, Swiper, SwiperSlide, Card },
+  setup() {
+    const thumbsSwiper = ref(null);
+
+    const setThumbsSwiper = (swiper) => {
+      thumbsSwiper.value = swiper; 
+    };
+    return {
+      thumbsSwiper,
+      setThumbsSwiper,
+      modules: [FreeMode, Navigation, Thumbs],
+    };
+  },
+  data() {
+    return {
+      isExist: false, 
+      main_image: '',
+      single_product: {},
+      trending_products: [],
+    //   focusedIndex: null
+    };
+  },
+  methods: {
+    // setFocused(index) {
+    //   this.focusedIndex = index;
+    // },
+    // focusedStyle(index) {
+    //   return {
+    //     border: index === this.focusedIndex ? '2px solid red' : 'none'
+    //   };
+    // },
+    async loadSingleProduct() { 
+      try {
+        const response = await ApiInstance.get(`/products/${this.$route.params.id}`);
+        this.single_product = response.data[0];
+      } catch (error) {
+        console.error('Error loading single product:', error);
+      }
+    },
+    async loadTrendingProducts() { 
+      try {
+        const response = await ApiInstance.get(`/products/category/${this.$route.query.category}`);
+        this.trending_products = response.data;
+      } catch (error) {
+        console.error('Error loading trending products:', error);
+      }
+    },
+    addProductCart(product) {
+      this.$store.commit('AddToCart', product);
+      this.isExist = this.$store.state.cart_data.some(item => item.id === product.id);
     }
+  },
+  mounted() {
+    this.loadSingleProduct();
+    this.loadTrendingProducts();
+  }
+};
 </script>
+
 
 <template>
     <Container>
-        <RouterLink  to="/" class="redirect-title"> <span class="material-symbols-outlined">arrow_back</span> Barcha mahsulotlar</RouterLink>
+        <RouterLink to="/" class="redirect-title"> <span class="material-symbols-outlined">arrow_back</span> Barcha mahsulotlar</RouterLink>
 
         <div class="single__product-wrapper">
+
             <div class="single__carousel-wrapper">
-            <div class="single-carousel">
-                <swiper  :modules="modules" class="mySwiper">
-                     <swiper-slide  v-for="image_variant in this.single_product.image"> 
-                        <img  @click="handleAddVariant(image_variant); this.isFocusVariant=true"  :src="image_variant" alt="Variant Rasmlar">
-                     </swiper-slide>
-                 </swiper>
-            </div>
-            <div class="single__carousel-main">
-                <swiper :navigation="true"  :modules="modules" class="mySwiper">
-                 <swiper-slide v-for="variant_image in this.single_product.image">
-                    <img :src="this.main_image ? this.main_image : variant_image " alt="Asosiy Rasm">
-                 </swiper-slide>
-         </swiper>
-            </div>
+                <!-- VARIANTS SWIPER -->
+                <div class="variants__swiper-carousel">    
+                    <Swiper
+                           @swiper="setThumbsSwiper"
+                           :spaceBetween="10"
+                           :slidesPerView="4"
+                           :freeMode="true"
+                           :watchSlidesProgress="true"
+                           :modules = "modules"
+                           class="mySwiper variants-carousel"
+                     >
+                       <SwiperSlide v-for="(variants, index) in single_product.image" :key="index"> 
+                        <img :src="variants"  />
+                    </SwiperSlide>
+                       
+                   
+                     </Swiper>
+                </div>
 
+                <!-- MAIN SWIPER IMAGE -->
+                <div class="main__swiper-carousel">
 
-        </div>
+     <Swiper
+            :style="{ '--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff', }"
+            :spaceBetween="10"
+            :navigation="true"
+            :thumbs="{ swiper: thumbsSwiper }" 
+            :modules="modules"
+            class="mySwiper2"
+  >
+    <SwiperSlide v-for="(main_image, index) in single_product.image" :key="index">
+        <img :src="main_image" />
+    </SwiperSlide>
+    
+</Swiper>
+</div>
 
+ 
+         </div>
+      
+  
         
         <div class="single__product-content">
             <div class="product-feedback">
@@ -93,10 +127,10 @@
                 <span class="material-symbols-outlined">kid_star</span>
                 <span class="material-symbols-outlined">kid_star</span>
                 <span class="material-symbols-outlined">kid_star</span>
-                <strong>Baholanmangan</strong>
+                <strong>Baholanmagan</strong>
             </div>
             <strong class="chegirma-foiz">9%</strong>
-            <h2 class="product-name"> {{this.single_product.product_name}}</h2>
+            <h2 class="product-name"> {{single_product.product_name}}</h2>
             <div class="price__info-content">
                 <div class="term__price-content">
                     <span>Muddatli to'lovga sotib olish</span>
@@ -104,7 +138,7 @@
                 </div>
                 <div class="main__price-content">
                     <span>Narx</span>
-                    <p>{{ this.single_product.price }} so'm</p>
+                    <p>{{ single_product.price }} so'm</p>
                 </div>
             </div>
             <div class="monthly-payment">
@@ -115,7 +149,7 @@
                 <button>24</button>
             </div>
             <div class="content-actions">
-                <button class="add__cart-btn">
+                <button class="add__cart-btn" @click="addProductCart(single_product)">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     Savatga qo'shish
                 </button>
@@ -129,20 +163,15 @@
 
         <div class="trending__category-wrapper">
             <h3 class="category-title">Sizni qiziqtirishi mumkin</h3>
-            <swiper
-            :space-between="30"
-             :navigation="true"
-              :modules="modules"
-               class="mySwiper category-swiper"
-               >
-    <swiper-slide v-for="category_item in this.trending_products " class="category__card-slide">
-        <Card :product="category_item"/>
-    </swiper-slide>
-    
-  </swiper>
+            <Swiper :space-between="30" :navigation="true" class="mySwiper category-swiper">
+                <SwiperSlide v-for="(category_item, index) in trending_products" :key="index" class="category__card-slide">
+                    <Card :product="category_item"/>
+                </SwiperSlide>
+            </Swiper>
         </div>
     </Container>
 </template>
+
 
 
 <style >
@@ -152,9 +181,11 @@
     column-gap: 5px;
     font-weight: 600;
     color: #2020d3a9;
+    margin-top: 1rem;
     font-size: 18px;
     text-decoration: none;
 }
+
 .category-title{
     font-weight: 600;
     color: var(--dark-color);
@@ -163,77 +194,72 @@
 }
     .single__product-wrapper{
         display: flex;
-        column-gap: 30px;
-        /* justify-content: space-evenly; */
+        column-gap: 10px;
+        justify-content: space-evenly;
         width: 100%;
-        height: 500px;
-        margin-top: 30px;
-        padding: 1rem;
-    }
+        margin-top: 3rem;
+     }
 
 
     .single__carousel-wrapper{
         display: flex;
-        /* align-items: center; */
-        column-gap: 30px;
+        max-width: 600px;
+        max-height: 450px;
     }
-    .single-carousel{
-        max-width: 200px;
-        height: 360px;
-        padding: 0 10px;
-        overflow-y: auto;
-        &::-webkit-scrollbar{
-            width: 4px;
-        }
-        &::-webkit-scrollbar-track{
-            border-radius: 8px;
-        }
-        &::-webkit-scrollbar-thumb{
-            background-color: var(--warning-color);
-            cursor: grab;
-        }
+    /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+    .variants__swiper-carousel{
+        width: 110px;
+        height: 350px;
+        /* padding: 1rem; */
+        overflow: auto;
     }
-    .single-carousel > .swiper .swiper-wrapper{
-        display: flex !important;
-        flex-direction: column !important; 
-        gap: 30px 0;
+
+  
+    .variants__swiper-carousel .swiper .swiper-wrapper{
+        width: auto;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        row-gap: 25px;
         .swiper-slide{
-            width: 70px !important;
-            aspect-ratio: 1/1;
-           cursor: pointer;
+            display: flex;
+            width: 100% !important;
+            height: 80px;
+            cursor: pointer;
             img{
-                width: 100%;
-                height: 100%;
+                padding: 5px;
+            /* border: 2px solid var(--warning-color); */
+            border-radius: 8px;
+                width: 72px !important;
+                height: 72px;
                 object-fit: contain;
             }
         }
     }
 
-    .single__carousel-main{
-        display: flex;
-        /* align-items: center; */
-        width: 100%;
+    .main__swiper-carousel{
         max-width: 450px;
-        height: 450px;
+        max-height: 450px !important;
     }
-
-    .single__carousel-main > .swiper {
-        display: grid !important;
-        /* place-items: center; */
+    .main__swiper-carousel .swiper{
         width: 100%;
-         height: 100%;
     }
-    .single__carousel-main > .swiper .swiper-wrapper{
+    .main__swiper-carousel .swiper .swiper-wrapper{
         width: 100%;
         height: 100%;
         .swiper-slide{
+            height: 100%;
             img{
+                padding: 0 2rem;
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
             }
         }
     }
+
+
+    /* -------------------------- */
 
     .single__product-content{
         .product-feedback{
