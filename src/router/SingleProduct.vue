@@ -57,8 +57,15 @@ export default {
       }
     },
     addProductCart(product) {
-      this.$store.commit('AddToCart', product);
+        let extraProduct = {...product}
+        extraProduct = {...product, count: 1}
+      this.$store.commit('AddToCart', extraProduct);
       this.isExist = this.$store.state.cart_data.some(item => item.id === product.id);
+    },
+    RemoveProductCart(product){
+        let extraProduct = {...product}
+        extraProduct = {...product}
+        this.$store.commit("RemoveFromCart", extraProduct)
     },
     AddToFavorite(product){
             this.$store.commit('AddToLiked', product)
@@ -160,7 +167,12 @@ export default {
                 <button>24</button>
             </div>
             <div class="content-actions">
-                <button class="add__cart-btn" @click="addProductCart(single_product)">
+                <div  v-if="this.$store.state.cart_data.findIndex(f => f.id === single_product.id) !== -1" class="counter-action">
+                    <button @click="RemoveProductCart(this.single_product)">-</button>
+                    <strong>{{this.$store.state.cart_data.find(ind => ind?.id === this.single_product?.id).count}}</strong>
+                    <button @click="addProductCart(this.single_product)">+</button>
+                </div>
+                <button v-else  class="add__cart-btn" @click="addProductCart(single_product)">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     Savatga qo'shish
                 </button>
@@ -359,6 +371,7 @@ export default {
         margin-top: 1.7rem;
         display: flex;
         column-gap: .6rem;
+
         .add__cart-btn{
             display: flex;
             align-items: center;
@@ -380,12 +393,14 @@ export default {
             span{
                 font-size: 21px;
             }
+  
         }
         .add__favorite-btn{
             display: flex;
             align-items: center;
             justify-content: center;
-            padding:  .6rem .7rem;
+            padding:  .6rem .7rem !important;
+            max-height: 50px;
             background: transparent;
             border: 2px solid #bbbdbe;
             color: #b5b6b8;
@@ -401,6 +416,34 @@ export default {
             .like-btn{
                 color: var(--danger-color);
             }
+        }
+    }
+    .content-actions > .counter-action{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 10px;
+        width: 100%;
+        margin-top: 0px;
+        max-width: 260px !important;
+        padding: .1rem 1.5rem;
+        border: 1px solid #a5b1bb;
+        border-radius: 8px;
+        button{
+            background: transparent;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            transition: .2s;
+            &:hover{
+                transform: scale(1.1);
+            }
+            &:active{
+                transform: scale(0.8);
+            }
+        }
+        strong{
+            font-size: 20px;
         }
     }
 }

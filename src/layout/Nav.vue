@@ -65,7 +65,7 @@ export default {
                         <p>Savat</p>
                         <strong :style="{display:this.$store.state.cart_data.length > 0 ? 'block' : 'none' }" class="count-cart">{{this.$store.state.cart_data && this.$store.state.cart_data.length}}</strong>
                     </RouterLink>
-                    <RouterLink to="favorites" class="action-item favorite-item">
+                    <RouterLink to="/favorites" class="action-item favorite-item">
                         <strong :style="{display:this.$store.state.liked_cart?.length > 0 ? 'block' : 'none' }" class="count-like">1</strong>
                         <span class="material-symbols-outlined">favorite</span>
                         <p>Saralanganlar</p>

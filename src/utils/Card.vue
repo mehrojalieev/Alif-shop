@@ -14,13 +14,20 @@
         },
         methods:{
             AddProductCart(product){
-            this.$store.commit('AddToCart', product)
+                let extraProduct = {...product}
+                extraProduct = {...extraProduct, count: 1}
+            this.$store.commit('AddToCart', extraProduct)
             if(this.$store.state.cart_data.filter(f => product.id)){
                 this.isExict = true
             }
             else{
                 console.log(false);
             }
+        },
+        RemoveProductCart(product){
+            let extraProduct = {...product}
+            extraProduct = {...product}
+            this.$store.commit("RemoveFromCart", extraProduct)
         },
         AddToFavorite(product){
             this.$store.commit('AddToLiked', product)
@@ -38,6 +45,8 @@
 
 <template>
     <div class="product-card">
+        <span   v-if="this.$store.state?.liked_data.findIndex(f => f.id == product.id)!= -1" @click="RemoveFromFavorite(product)" class="material-symbols-outlined like-btn liked-btn" >heart_minus</span>
+        <span v-else   @click="AddToFavorite(product)" class="material-symbols-outlined like-btn ">heart_plus</span>
                         <router-link onclick.native.stop  :key="product.id" class="product__card-link"
                         :to="{
                             name: 'Single_Product',
@@ -45,14 +54,16 @@
                              params: {id: `${product.id}`}
                              }" >
                         <img :src="product.image[0]" :alt='product.product_name'>
-                        <span   v-if="this.$store.state?.liked_data.findIndex(f => f.id == product.id)!= -1" @click="RemoveFromFavorite(product)" class="material-symbols-outlined like-btn liked-btn" >heart_minus</span>
-                        <span v-else   @click="AddToFavorite(product)" class="material-symbols-outlined like-btn ">heart_plus</span>
                         <p class="product-name"> {{product.product_name.slice(0, 30)}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom === null ? '' : product.memory_rom+'GB'}}</p>
                         <span>dan 200.000 so'm/oyiga</span>
                         <strong class="price old-price">{{product.price - product.price/10 +` so'm`}}</strong>
                         <strong class="price">{{product.price}} so'm</strong>
                         </router-link>
-                        <button v-if="isExict">Count +</button>
+                        <div class="counter-action"  v-if="this.$store.state?.cart_data.findIndex(f => f.id == product.id)!= -1">
+                            <button @click="RemoveProductCart(product)" >-</button>
+                            <strong>{{this.$store.state.cart_data.find(ind => ind?.id === product?.id).count}}</strong>
+                            <button @click="AddProductCart(product)" >+</button>
+                        </div>
                         <button v-else @click="AddProductCart(product)" type="button" class="add__cart-btn">
                             <span class="material-symbols-outlined">shopping_cart</span>
                             Savatga
@@ -63,6 +74,7 @@
 
 
 <style>
+
      .product-card{
         position: relative;
         max-width: 220px;
@@ -141,6 +153,31 @@
                 font-size: 20px;
                 border: none;
                 background-color: transparent;
+            }
+        }
+    }
+    .counter-action{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 10px;
+        width: 100%;
+        margin-top: 15px;
+        max-width: 110px;
+        padding: 1px 10px;
+        border: 1px solid #a5b1bb;
+        border-radius: 8px;
+        button{
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            transition: .2s;
+            &:hover{
+                transform: scale(1.1);
+            }
+            &:active{
+                transform: scale(0.8);
             }
         }
     }
