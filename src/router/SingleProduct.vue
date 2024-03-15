@@ -167,12 +167,16 @@ export default {
                 <button>24</button>
             </div>
             <div class="content-actions">
-                <div  v-if="this.$store.state.cart_data.findIndex(f => f.id === single_product.id) !== -1" class="counter-action">
-                    <button @click="RemoveProductCart(this.single_product)">-</button>
-                    <strong>{{this.$store.state.cart_data.find(ind => ind?.id === this.single_product?.id).count}}</strong>
-                    <button @click="addProductCart(this.single_product)">+</button>
+                <div v-if="this.$store.state.cart_data.findIndex(f => f.id === single_product.id) !== -1" class="counter__action-content">
+                    <div   class="counter-action">
+                        <button @click="RemoveProductCart(this.single_product)">-</button>
+                        <strong>{{this.$store.state.cart_data.find(ind => ind?.id === this.single_product?.id).count}}</strong>
+                        <button @click="addProductCart(this.single_product)">+</button>
+                    </div>
+                    <RouterLink  class="cart-link" to="/cart">Savatga o'tish</RouterLink>
                 </div>
-                <button v-else  class="add__cart-btn" @click="addProductCart(single_product)">
+
+                    <button v-else  class="add__cart-btn" @click="addProductCart(single_product)">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     Savatga qo'shish
                 </button>
@@ -237,6 +241,7 @@ export default {
     }
 
   
+
     .variants__swiper-carousel .swiper .swiper-wrapper{
         width: auto;
         height: fit-content;
@@ -367,9 +372,11 @@ export default {
             }
         }
     }
+
     .content-actions{
         margin-top: 1.7rem;
         display: flex;
+        align-items: center;
         column-gap: .6rem;
 
         .add__cart-btn{
@@ -418,32 +425,56 @@ export default {
             }
         }
     }
-    .content-actions > .counter-action{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        column-gap: 10px;
+    .counter__action-content{
         width: 100%;
-        margin-top: 0px;
-        max-width: 260px !important;
-        padding: .1rem 1.5rem;
-        border: 1px solid #a5b1bb;
-        border-radius: 8px;
-        button{
-            background: transparent;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            transition: .2s;
-            &:hover{
-                transform: scale(1.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 10px;
+        .counter-action{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            column-gap: 15px;
+            width: 100%;
+            margin-top: 0px;
+            max-width: 160px !important;
+            padding: .4rem 1rem;
+            border: 1px solid #a5b1bb;
+            border-radius: 8px;
+            button{
+                background: transparent;
+                border: none;
+                font-size: 22px;
+                cursor: pointer;
+                transition: .2s;
+                &:hover{
+                    transform: scale(1.1);
+                }
+                &:active{
+                    transform: scale(0.8);
+                }
             }
-            &:active{
-                transform: scale(0.8);
+            strong{
+                font-size: 20px;
             }
         }
-        strong{
-            font-size: 20px;
+        .cart-link{
+            text-align: center;
+            width: 100% !important;
+            max-width: 220px !important;
+            display: inline-block;
+            padding: .7rem 0rem;
+            transition: .2s;
+            color: var(--dark-color);
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 8px;
+            background-color: var(--warning-color);
+            &:hover{
+                cursor: pointer;
+                background-color: var(--warning-hover-color);
+            }
         }
     }
 }
@@ -630,7 +661,11 @@ export default {
             }
         }
         }
+        .cart-link{
+            font-size: 15px !important;
+        }
     }
+
 
     @media only screen and (max-width: 819px){
             .main__swiper-carousel{
@@ -646,6 +681,11 @@ export default {
             font-size: 15px;
         }
     }
+        }
+        .cart-link{
+            padding: .7rem 5px !important;
+            font-size: 13px !important;
+            max-width: 100px !important;
         }
        
     }
@@ -731,6 +771,28 @@ export default {
         }
     }
     }
+    .counter__action-content{
+        justify-content: space-evenly;
+        width: 100%;
+        column-gap: 10px;
+        .counter-action{
+            column-gap: 15px;
+            max-width: 160px !important;
+            padding: .4rem 1rem;
+            button{
+                font-size: 22px;
+            }
+
+        }
+        .cart-link{
+            width: 100% !important;
+            max-width: 320px !important;
+            padding: .6rem 3rem ;
+            font-size: 16px;
+            font-size: 16px !important;
+        }
+    }
+  
     }
 
     @media only screen and (max-width:500px){
