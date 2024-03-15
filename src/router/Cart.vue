@@ -1,6 +1,11 @@
 <script>
     import Container from '@/utils/Container.vue'
 import { RouterLink } from 'vue-router';
+export default {
+    components:{
+        Container
+    }
+}
 </script>
 
 <template>
