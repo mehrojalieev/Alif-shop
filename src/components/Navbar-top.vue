@@ -65,6 +65,9 @@ import { RouterLink } from "vue-router";
                 color: var(--dark-color);
             }
         }
+        .router-link-exact-active{
+            color: var(--warning-color);
+        }
     }
 
     // RESPONSIVE STYLES 

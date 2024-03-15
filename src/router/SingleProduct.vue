@@ -1,15 +1,15 @@
 <script>
+import 'swiper/css';
 import { ref } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css/thumbs';
+import 'swiper/css/free-mode';
+import ApiInstance from '@/api';
+import 'swiper/css/navigation';
 import Card from '@/utils/Card.vue';
 import Container from '@/utils/Container.vue'; 
-import ApiInstance from '@/api';
-import 'swiper/css';
-
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+
 export default {
   components: { Container, Swiper, SwiperSlide, Card },
   setup() {
@@ -24,15 +24,17 @@ export default {
       modules: [FreeMode, Navigation, Thumbs],
     };
   },
+
+//   VARIABLES
   data() {
     return {
       isExist: false, 
       main_image: '',
       single_product: {},
       trending_products: [],
-    //   focusedIndex: null
     };
   },
+//   FUNCTIONS METHOD
   methods: {
     scrollToTop () {
             window.scrollTo({
@@ -76,6 +78,7 @@ export default {
             this.$store.commit('RemoveProductFromFavorite', this.single_product)
         }
   },
+//   MOUNTED
   mounted() {
     this.scrollToTop()
     this.loadSingleProduct();
@@ -116,7 +119,6 @@ export default {
 
                 <!-- MAIN SWIPER IMAGE -->
                 <div class="main__swiper-carousel">
-
              <Swiper
                   :style="{ '--swiper-navigation-color': '#fff', '--swiper-pagination-color': '#fff', }"
                   :slides-per-view="1"
@@ -227,20 +229,19 @@ export default {
         width: 100%;
         margin-top: 3rem;
      }
+     /* SWIPER STYLES */
     .single__carousel-wrapper{
         display: flex;
         max-width: 600px;
         max-height: 450px;
     }
-    /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-
+    
+    /* Variant Swiper */
     .variants__swiper-carousel{
         width: 110px;
         height: 350px;
         overflow: auto;
     }
-
-  
 
     .variants__swiper-carousel .swiper .swiper-wrapper{
         width: auto;
@@ -255,7 +256,6 @@ export default {
             cursor: pointer;
             img{
                 padding: 5px;
-            /* border: 2px solid var(--warning-color); */
             border-radius: 8px;
                 width: 72px !important;
                 height: 72px;
@@ -264,6 +264,7 @@ export default {
         }
     }
 
+/* Main Image Swiper */
     .main__swiper-carousel{
         max-width: 450px;
         max-height: 450px !important;
@@ -284,8 +285,8 @@ export default {
         }
     }
 
-    /* -------------------------- */
-
+ 
+    /* Single Product Content Styles */
     .single__product-content{
         .product-feedback{
             display: flex;
@@ -478,8 +479,8 @@ export default {
         }
     }
 }
-    /* TRENDING CATEGORIES SWIPER STYLES */
 
+    /* TRENDING CATEGORIES SWIPER STYLES */
     .category-swiper{
         margin-top: 40px;
     }
@@ -491,7 +492,7 @@ export default {
     }
 
 
-    /* !!!!    RESPONSIVE STYLES */
+    /* !!!!    RESPONSIVE STYLES !!!!*/
 
     @media only screen and (max-width: 1000px){
         .variants__swiper-carousel{

@@ -6,12 +6,12 @@ export default {
     components:{Container, authModal},
     data(){
         return {
-         isFixed: false,
+            isFixed: false,
+            input_value: "",
+            isFocosed: false,
             isOpenModal: false,
             openCategory: false,
             openClearBtn: false,
-            isFocosed: false,
-            input_value: ""
         }
     },
     mounted(){
@@ -60,13 +60,13 @@ export default {
                     </button>
                 </form>
                 <div class="nav-actions">
-                    <RouterLink to="cart" class="action-item">
+                    <RouterLink  to="cart" class="action-item">
                         <span class="material-symbols-outlined">shopping_cart</span>
                         <p>Savat</p>
                         <strong :style="{display:this.$store.state.cart_data.length > 0 ? 'block' : 'none' }" class="count-cart">{{this.$store.state.cart_data && this.$store.state.cart_data.length}}</strong>
                     </RouterLink>
                     <RouterLink to="/favorites" class="action-item favorite-item">
-                        <strong :style="{display:this.$store.state.liked_cart?.length > 0 ? 'block' : 'none' }" class="count-like">1</strong>
+                        <strong :style="{display: this.$store.state.liked_data.length > 0 ? 'block' : 'none' }" class="count-like">1</strong>
                         <span class="material-symbols-outlined">favorite</span>
                         <p>Saralanganlar</p>
                     </RouterLink>
@@ -119,7 +119,7 @@ export default {
                 </RouterLink>
                 
             </div>
-        </Container>
+        </Container>    
     </nav>
 </template>
 
@@ -272,6 +272,12 @@ export default {
                 background-color: red;
             }
         }
+        .router-link-exact-active{
+            span, p{
+                color: var(--warning-color);
+            }
+        }
+      
         .auth-link{
             text-decoration: none;
             font-size: 17px;
