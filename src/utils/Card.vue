@@ -90,8 +90,8 @@
         }
         .like-btn{
             position: absolute;
-            top: .6rem;
-            right: .6rem;
+            top: 3px !important;
+            right: 1px !important;
             border: none;
             background: transparent;
             border-radius: 30%;

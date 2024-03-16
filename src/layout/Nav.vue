@@ -422,16 +422,16 @@ export default {
             }
         }
         .nav-actions{
-            .favorite-item{
-                display: none;  
-            }
             .action-item{
                 span{
                 font-size: 25px;
             }
             p{
-                font-size: 13px;
+                display: none;
             }
+            }
+            .auth-link{
+                padding: .4rem .7rem;
             }
         }
     }
