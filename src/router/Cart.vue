@@ -329,6 +329,23 @@ export default {
         }
     }
 
+
+    // RESPONSIVE STYLES
+    @media only screen and (max-width: 796px){
+        .product__cards-container{
+            // display: block;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product__box-container{
+            margin-bottom: 5rem;
+            height: fit-content;
+        }
+      .product-content-wrapper{
+        max-width: 750px;
+      }
+    }
+
 @media only screen and (max-width: 680px){
     .empty__cart-wrapper{
         margin-top: 10px;

@@ -60,7 +60,7 @@ export default {
                     </button>
                 </form>
                 <div class="nav-actions">
-                    <RouterLink  to="cart" class="action-item">
+                    <RouterLink  to="/cart" class="action-item">
                         <span class="material-symbols-outlined">shopping_cart</span>
                         <p>Savat</p>
                         <strong :style="{display:this.$store.state.cart_data.length > 0 ? 'block' : 'none' }" class="count-cart">{{this.$store.state.cart_data && this.$store.state.cart_data.length}}</strong>
