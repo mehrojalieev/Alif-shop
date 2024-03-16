@@ -72,7 +72,6 @@
 
 .swiper-slide {
   overflow: hidden;
-  box-shadow: 0  0 10px red;
   img{
   width: 100%;
   height: 100%;
