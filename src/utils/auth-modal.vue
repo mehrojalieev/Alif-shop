@@ -6,12 +6,21 @@
                 required: true
             }
         },
+        watch: {
+    isOpenModal(newVal) {
+      if (newVal) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    }
+  }
     }
 </script>
     
 <template>
-    <div @click="isOpenModal=false" :style="{display: isOpenModal ? 'block' : 'none'}"  class="modal-overlay">
-            <div @click.stop="isOpenModal" class="auth-form">
+    <div @click="isOpenModal=false" :style="{transform: isOpenModal ? 'scale(1)' : 'scale(0)'}"  class="modal-overlay">
+            <div :style="{transform: isOpenModal ? 'scale(1)' : 'scale(0)'}" @click.stop="isOpenModal" class="auth-form">
                 <div class="form-header">
                     <h3>Avtorizatsiya alif shop</h3>
                     <span @click="isOpenModal=false" class="material-symbols-outlined">close</span>
@@ -29,6 +38,7 @@
 <style lang="scss">
 
     .modal-overlay{
+        
        display: flex;
        align-items: center !important;
        justify-content: center ;
@@ -38,12 +48,13 @@
         top: 0px;
         left: 0;
         z-index: 3;
-        background-color: #c2bfbf69;
+        background-color: #dad7d769;
     }
     .auth-form{
+        transition: .3s;
+        transform-origin: center;
+        width: 100%;
         max-width: 450px;
-        margin: 180px auto 0;
-        // height: 220px;
         border-radius: 8px;
         padding: 1.7rem 1rem;
         background-color: var(--light-color);

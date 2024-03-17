@@ -9,7 +9,7 @@ const store = createStore({
     },
     mutations:{ 
         AddToCart(state, payload){
-            console.log(payload);
+            // console.log(payload);
             const productExist = state.cart_data.findIndex(product => product.id === payload.id)
             if(productExist === -1){
                 state.cart_data = [...state.cart_data, payload]
@@ -27,6 +27,7 @@ const store = createStore({
 
         },
         DeleteProductCart(state, payload){
+            console.log(payload);
                 state.cart_data = state.cart_data?.filter(f => f.id !== payload.id)
         },
         AddToLiked(state, payload){
