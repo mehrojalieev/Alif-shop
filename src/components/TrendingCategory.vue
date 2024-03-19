@@ -35,7 +35,8 @@
             <div v-for="trending_category in this.AllProducts" class="category-list">
                 <RouterLink class="category-link"
                 :to="{
-                    params: {category: `${trending_category.category}`}
+                    name: 'Single_Category',
+                    params: {category_name: `${trending_category.category}`}
                 }"
                 
                 >

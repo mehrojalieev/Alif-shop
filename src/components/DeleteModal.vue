@@ -10,14 +10,17 @@ export default {
       required: true
     }
   },
+  data(){
+    return {
+      DeletingProduct: {...this.product}
+    }
+  },
   methods:{
-    // DeleteProductCart(product){
-    //     this.$store.commit("DeleteProductCart", product)
-    // }
+    DeleteProductCart(){
+        this.$store.commit("DeleteProductCart", product)
+    }
   },
-  mounted(){    
-    // console.log('Mahsulot', this.product);
-  },
+
 
   watch: {
     isOpenModal(newVal) {
@@ -36,7 +39,7 @@ export default {
     <div :style="{transform: isOpenModal ? 'scale(1)' : 'scale(0)'}"  class="modal-overlay-2">
         <form :style="{transform: isOpenModal ? 'scale(1)' : 'scale(0)'}" class="modal-form">
             <p>Ushbu tovarni savatdan aniq o'chirib tashlamoqchimisiz?</p>
-            <button :data-product-id="product.id" type="button" class="delete-btn">O'chirish</button>
+            <button  type="button" @click="DeleteProductCart" class="delete-btn">O'chirish</button>
             <button type="button"  @click="isOpenModal=false" class="cancel-btn">Bekor qilish</button>
         </form>
     </div>
