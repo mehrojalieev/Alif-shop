@@ -12,28 +12,38 @@ const routes = createRouter({
         {
             path: '/product/:id',
             name: "Single_Product",
-            component: () => import('../router/SingleProduct.vue')
+            component: () => import('../views/SingleProduct.vue')
+        },
+        {
+            path:'/categories',
+            name: 'Categories',
+            component: () => import('../views/Categories.vue') 
+        },
+        {
+            path: '/category/:category_name',
+            name: 'Single_Category',
+            component: () =>import('../views/SingleCategory.vue')
         },
         {
             path: '/prayer-time',
             name: 'PrayerTime',
-            component: () => import('../router/PrayerTime.vue')
+            component: () => import('../views/PrayerTime.vue')
         },
         {
             path: '/cart',
             name: 'Cart',
-            component: () => import('@/router/Cart.vue')
+            component: () => import('../views/Cart.vue')
         },
         {
             path: '/favorites',
             name: 'Favorites',
-            component: () => import('@/router/Favorite.vue')
+            component: () => import('@/views/Favorite.vue')
         },
         {
 
             path: '/:catchAll(.*)',
             name: "NotFound",
-            component: () => import('@/router/NotFound.vue')
+            component: () => import('@/views/NotFound.vue')
         }
     ]
 })

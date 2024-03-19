@@ -1,13 +1,17 @@
 <script>
     import Container from '@/utils/Container.vue'
+    import DeleteModal from '@/components/DeleteModal.vue'
 import { RouterLink } from 'vue-router';
 export default {
     components:{
-        Container
+        Container,
+        DeleteModal
     },
     data(){
         return{
-            total_price: 0
+            total_price: 0,
+            isOpenModal: false,
+            single: null
         }
     },
     methods:{
@@ -25,6 +29,8 @@ export default {
             console.log(product);
                 this.$store.commit("DeleteProductCart", product)
         }
+            
+       
     },
    
    
@@ -44,8 +50,8 @@ export default {
             <div v-if="this.$store.state.cart_data.length > 0" class="cart__product-wrapper">
                 <h3 class="cart-title">Savat </h3>
                 <div class="product__cards-container">
-                    <div class="product__box-container">
-                        <div v-for="product in this.$store.state.cart_data"  class="product-box">
+                    <div @click="btnclick" class="product__box-container">
+                        <div  v-for="product in this.$store.state.cart_data"  class="product-box">
                             <img :src="product.image[0]" :alt="product.product_name">
                             <div class="product-info">
                                 <RouterLink class="product-name" to="{name}" >{{product.product_name}}</RouterLink>
@@ -64,6 +70,7 @@ export default {
                                     </div>
                                 </div>
                             </div>
+                            <!-- <DeleteModal :product="this.product"  :isOpenModal="this.isOpenModal"/> -->
                         </div>
                     </div>
 
