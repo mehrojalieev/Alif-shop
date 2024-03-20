@@ -20,7 +20,7 @@ import Card from "@/utils/Card.vue"
                 <div class="empty-content">
                     <h3>Saralangan mahsulotlar ro'yxati xozircha bo'sh</h3>
                     <p>uzoq vaqt qidirmaslik uchun o'zingizga yoqqan tovarlarni saqlang</p>
-                    <RouterLink class="category-link" to="/">Katalogga o'tish</RouterLink>
+                    <RouterLink class="category-link" to="categories">Katalogga o'tish</RouterLink>
                 </div>
             </div>
         </div>

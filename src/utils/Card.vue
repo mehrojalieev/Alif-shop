@@ -55,7 +55,7 @@
                              }" >
                         <img :src="product.image[0]" :alt='product.product_name'>
                         <p class="product-name"> {{product.product_name.slice(0, 30)}} {{product.memory_rom === 1024 ? '1TB' : product.memory_rom === null ? '' : product.memory_rom+'GB'}}</p>
-                        <span>dan 200.000 so'm/oyiga</span>
+                        <span class="monthly-price">dan 200.000 so'm/oyiga</span>
                         <strong class="price old-price">{{product.price }} so'm</strong>
                         <strong class="price">{{product.aksiya_narx}} so'm</strong>
                         </router-link>
@@ -82,7 +82,6 @@
         text-align: left;
         padding: 1rem .8rem;
         box-shadow: #959da533 0px 8px 24px;
-
         img{
             width: 100%;
             height: 175px;
@@ -149,8 +148,8 @@
                 cursor: pointer;
             }
             span{
-                margin-top: 3px;
-                font-size: 20px;
+                margin-top: 2px;
+                font-size: 18px;
                 border: none;
                 background-color: transparent;
             }

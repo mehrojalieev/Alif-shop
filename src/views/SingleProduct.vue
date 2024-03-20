@@ -80,7 +80,7 @@ export default {
   },
 //   MOUNTED
   mounted() {
-    this.scrollToTop()
+    this.scrollToTop()   
     this.loadSingleProduct();
     this.loadTrendingProducts();
   },
@@ -193,7 +193,7 @@ export default {
 
         <div class="trending__category-wrapper">
             <h3 class="category-title">Sizni qiziqtirishi mumkin</h3>
-            <Swiper :space-between="30" :navigation="true" class="mySwiper category-swiper">
+            <Swiper :space-between="30"  class="mySwiper category-swiper">
                 <SwiperSlide @click="scrollToTop" v-for="(category_item, index) in trending_products" :key="index" class="category__card-slide">
                     <Card :product="category_item"/>
                 </SwiperSlide>
