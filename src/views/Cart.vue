@@ -101,7 +101,7 @@ export default {
                 <div class="empty-content">
                     <h3>Savat hozircha bo'sh</h3>
                     <p>Mahsulotlarni topish uchun katalogni ko'ring yoki qidiruvdan foydalaning</p>
-                    <RouterLink class="category-link" to="/">Katalogga o'tish</RouterLink>
+                    <RouterLink class="category-link" to="categories">Katalogga o'tish</RouterLink>
                     <RouterLink class="home-link" to="/">Asosiy ekranga</RouterLink>
                 </div>
             </div>

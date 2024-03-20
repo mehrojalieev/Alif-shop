@@ -26,8 +26,8 @@ export default {
         },
         handleScroll(){
             const scrollPosition = window.screenY || window.pageYOffset
-            if(scrollPosition > 45){
-                this.isFixed = true;
+            if(scrollPosition > 50){
+                this.isFixed = false;
             } else{
                 this.isFixed = false
             }
@@ -53,7 +53,7 @@ export default {
                     <p>Tovarlar katalogi</p>
                 </div>
                 <form @submit.prevent="SearchingProduct"  class="search-form">
-                    <input  @focus="openClearBtn=true"   v-model="input_value"  type="text" placeholder="Tovarlarni izlash">
+                    <input @change="SearchingProduct"  @focus="openClearBtn=true"   v-model="input_value"  type="text" placeholder="Tovarlarni izlash">
                     <span :style="{display: openClearBtn ? 'block' : 'none'}" @click="clearInput"  class="material-symbols-outlined clear__input-btn">close</span>
                     <button type="submit">
                         <span  class="material-symbols-outlined">search</span>
