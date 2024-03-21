@@ -108,8 +108,10 @@ export default {
                 <RouterLink class="item-link" to="/cart">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     <p>Savat</p>
+                    <strong :style="{display:this.$store.state.cart_data.length > 0 ? 'block' : 'none' }" class="count-cart">{{this.$store.state.cart_data && this.$store.state.cart_data.length}}</strong>
                 </RouterLink>
                 <RouterLink class="item-link" to="/favorites">
+                    <strong :style="{display: this.$store.state.liked_data.length > 0 ? 'block' : 'none' }" class="count-like">1</strong>
                     <span class="material-symbols-outlined">favorite</span>
                     <p>Saralanganlar</p>
                 </RouterLink>
@@ -189,6 +191,7 @@ export default {
             text-indent: 15px;
             font-size: 16px;
             height: 100%;
+            background-color: transparent;
             border-top-left-radius: 8px;
             border-bottom-left-radius: 8px;
          border: 2px solid var(--warning-color);
@@ -317,6 +320,7 @@ export default {
         left: 0;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         .item-link{
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -327,6 +331,26 @@ export default {
             }
             p{
                 font-size: 15px;
+            }
+            .count-cart{
+                background-color: red;
+                position: absolute;
+                top: -6px;
+                right: -1px;
+                font-size: 10px;
+                color: #fff;
+                padding: 0 7px;
+                border-radius: 50%;
+            }
+            .count-like{
+                position: absolute;
+                top: 0;
+                right: 30%;
+                font-size: 8px;
+                border-radius: 50%;
+                padding: 0 5px;
+                background-color: var(--danger-color);
+                color: var(--danger-color);
             }
         }
         .item-link__category{
@@ -654,6 +678,9 @@ export default {
             }
             p{
                 display: none;
+            }
+            .count-like{
+                right: -3%;
             }
         }
 

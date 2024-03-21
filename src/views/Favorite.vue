@@ -35,7 +35,11 @@ import Card from "@/utils/Card.vue"
     .liked__card-container{
         display: grid;
         gap: 20px 10px;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        .product-card{
+            width: 100% !important;
+            max-width: 270px !important;
+        }
     }
     .empty__cart-wrapper{
         width: 100%;
@@ -82,6 +86,27 @@ import Card from "@/utils/Card.vue"
         }
     }
 
+    // RESPONSIVE STYLES
+
+    @media only screen and (max-width: 848px){
+        .liked__card-container{
+            .product-card{
+                max-width: 240px !important;
+                img{
+                    height: 130px !important;
+                }
+                .monthly-price{
+                    font-size: 11px !important;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 810px){
+        .liked__card-container{
+            grid-template-columns: repeat(3,1fr);
+        }
+    }
+
 @media only screen and (max-width: 680px){
     .empty__cart-wrapper{
         margin-top: 10px;
@@ -104,5 +129,71 @@ import Card from "@/utils/Card.vue"
       
     }
 
+}
+@media only screen and (max-width: 616px) {
+    .liked__card-container{
+        .product-card{
+            img{
+                height: 120px !important;
+            }
+            .product-name{
+                font-size: 11px !important;
+            }
+            .monthly-price{
+                display: none;
+            }
+        }
+    }
+}
+@media only screen and (max-width:586px) {
+        .liked__card-container{
+            grid-template-columns: repeat(2,1fr);
+        .product-card{
+            img{
+                height: 150px !important;
+            }
+            .product-name{
+                font-size: 13px !important;
+            }
+            .monthly-price{
+                display: none;
+            }
+    }
+}
+}
+@media only screen and (max-width:396px) {
+    .liked__card-container{
+        .product-card{
+            img{
+                height: 100px !important;
+            }
+            .product-name{
+                font-size: 11px !important;
+            }
+            .liked-btn{
+                font-size: 21px !important;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 278px) {
+        .liked__card-container{
+            .product-card{
+                .product-name{
+                    margin: 5px 0 !important;
+                }
+                .old-price{
+                    display: inline-block;
+                    margin-top: 5px;
+                    font-size: 11px;
+                }
+                .add__cart-btn{
+                    font-size: 12px;
+                    span{
+                        font-size: 17px;
+                    };
+                }
+            }
+        }
 }
 </style>
