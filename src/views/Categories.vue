@@ -110,5 +110,131 @@ export default {
         color: #5d6d7d;
     }
 }
-
+@media only screen and (max-width:898px){
+    .categories__card-container{
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+@media only screen and (max-width:815px){
+    .category-card{
+        h3{
+            font-size: 15px;
+        }
+        img{
+            max-width: 120px;
+        }
+    }
+}
+@media only screen and (max-width:760px){
+    .categories__card-container{
+        margin-top: 2rem;
+        grid-template-columns: repeat(3,1fr);
+    }
+    .category-card{
+        text-align: left;
+        position: relative;
+        max-width: 220px;
+        overflow: hidden;
+        height: 220px;
+        background-color: #F4F6F7;
+        h3{
+            position: absolute;
+            top: 0;
+            left: 10px;
+            font-size: 26px;
+            font-weight: 500;
+        }
+        p{
+            display: none;
+        }
+        img{
+            position: absolute;
+            bottom: -20px;
+            max-width: 160px;
+            right: -15px;
+        }
+    }
+}
+@media only screen and (max-width:644px){
+    .category-card{
+        max-width: 180px;
+        overflow: hidden;
+        height: 190px;
+        background-color: #F4F6F7;
+        h3{
+            left: 4px;
+            font-size: 23px;
+        }
+      
+        img{
+            position: absolute;
+            bottom: -20px;
+            max-width: 130px;
+            right: -15px;
+        }
+    }
+}
+@media only screen and (max-width:584px){
+    .categories__card-container{
+        grid-template-columns: repeat(2,1fr);
+        gap: 1rem .6rem;
+    }
+    .category-card{
+        max-width: 260px;
+        overflow: hidden;
+        height: 190px;
+        background-color: #F4F6F7;
+        h3{
+            left: 4px;
+            z-index: 1;
+            font-size: 25px;
+        }
+      
+        img{
+            z-index: 1;
+            position: absolute;
+            bottom: -20px;
+            max-width: 170px;
+            right: -10px;
+        }
+    }
+}
+@media only screen and (max-width:424px){
+    .category-card{
+        height: 175px;
+        background-color: #F4F6F7;
+        h3{
+            font-size: 21px;
+        }
+      
+        img{
+            max-width: 160px;
+        }
+    }
+}
+@media only screen and (max-width:356px){
+    .category-card{
+        height: 175px;
+        h3{
+            font-size: 18px;
+        }
+      
+        img{
+            max-width: 150px;
+        }
+    }
+}
+@media only screen and (max-width:310px){
+    .category-card{
+        height: 150px;
+        h3{
+            font-size: 16px;
+            word-break: break-all;
+        }
+      
+        img{
+            max-width: 150px;
+        }
+    }
+}
 </style>
