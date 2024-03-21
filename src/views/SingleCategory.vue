@@ -237,7 +237,7 @@ export default {
                     margin: 3px 0;
                 }
                 span{
-                    font-size: 11px;
+                    font-size: 18px;
                 }
                 .monthly-price{
                     font-size: 11px;
@@ -260,7 +260,7 @@ export default {
                     margin: 3px 0;
                 }
                 span{
-                    font-size: 11px;
+                    font-size: 18px;
                 }
                 .monthly-price{
                     font-size: 11px;
@@ -268,5 +268,221 @@ export default {
               
             }
 }
+}
+@media only screen and (max-width: 700px){
+    .category__render-wrapper{
+        flex-direction: column;
+    }
+    .category__actions-wrapper{
+        width: 100%;
+        max-width: 100%;
+    }
+    .range__inputs{
+        display: flex;
+        column-gap: 10px;
+        input{width: 100%;}
+    }
+    .brands-box{
+        display: flex;
+        align-items: flex-start;
+        height: fit-content;
+        gap: 1rem 1.5rem;
+        flex-wrap: wrap;
+        .brand-item{
+            label{
+                font-size: 16px;
+                margin-left: 1px;
+            }
+        }
+    }
+    .category__card-wrapper{
+        margin-top: 3rem;
+        .product-card{
+            max-width: 280px;
+            .product-name{
+                margin: 10px 0;
+                font-size: 15px;
+            }
+            .like-btn{
+                top: 5px !important;
+                font-size: 22px;
+                right: 4px !important;
+            }
+            .price{
+                font-size: 15px;
+            }
+            .old-price{
+                font-size: 15px;
+            }
+            span{
+                font-size: 20px;
+            }
+            
+            img{
+                height: 160px;
+            }
+            .add__cart-btn{
+                max-width: 280px;
+                height: 34px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 504px){
+    .range__inputs{
+        display: flex;
+        column-gap: 10px;
+    }
+    .brands-box{
+  
+        gap: 1rem 1.5rem;
+        flex-wrap: wrap;
+        .brand-item{
+            label{
+                font-size: 15px;
+            }
+        }
+    }
+    .category__card-wrapper{
+        .product-card{
+            max-width: 240px;
+            .product-name{
+                margin: 10px 0;
+                font-size: 15px;
+            }
+            .price{
+                font-size: 15px;
+            }
+            .old-price{
+                font-size: 15px;
+            }
+            span{
+                font-size: 20px;
+            }
+            
+            img{
+                height: 160px;
+            }
+            .add__cart-btn{
+                max-width: 280px;
+                height: 34px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 412px){
+    .brands-box{
+          .brand-item{
+            label{
+                font-size: 15px;
+            }
+        }
+    }
+    .category__card-wrapper{
+        .product-card{
+            .product-name{
+                font-size: 14px;
+            }
+           
+            .price{
+                font-size: 15px;
+            }
+            .old-price{
+                font-size: 13px;
+            }
+            span{
+                font-size: 20px;
+            }
+            .monthly-price{
+                font-size: 10px;
+            }
+            img{
+                height: 140px;
+            }
+            .add__cart-btn{
+                height: 30px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 356px){
+    .brands-box{
+  
+        .brand-item{
+            label{
+                font-size: 14px;
+            }
+        }
+    }
+    .category__card-wrapper{
+        .product-card{
+            .product-name{
+                font-size: 13px;
+            }
+            .price{
+                font-size: 15px;
+            }
+            .old-price{
+                font-size: 13px;
+            }
+           
+            .monthly-price{
+                display: none;
+            }
+            img{
+                height: 135px;
+            }
+            .add__cart-btn{
+                height: 27px;
+                font-size: 13px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 316px){
+    .category__breakgrump{
+        .category-link{
+            font-size: 12px;
+        }
+    }
+    .range__inputs{
+        input{
+            font-size: 13px !important;
+        }
+    }
+    .brands-box{
+        .brand-item{
+            label{
+                font-size: 14px;
+            }
+        }
+    }
+    .category__card-wrapper{
+        .product-card{
+            padding: 2px 5px;
+            .product-name{
+                font-size: 12px;
+            }
+            .price{
+                font-size: 13px;
+            }
+            .old-price{
+                font-size: 12px;
+            }
+           
+            img{
+                height: 135px;
+            }
+            .add__cart-btn{
+                height: 27px;
+                font-size: 12px;
+                span{font-size: 17px;}
+            }
+        }
+    }
 }
 </style>
