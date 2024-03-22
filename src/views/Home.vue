@@ -1,6 +1,4 @@
 <script>
-        import NavbarTop from '@/components/Navbar-top.vue'
-        import Nav from '@/layout/Nav.vue';
         import Hero from '@/components/Hero.vue'
         import AllProducts from "@/components/AllProducts.vue"
         import TrendingCategory from "@/components/TrendingCategory.vue"
@@ -8,7 +6,6 @@
             components: {
                 Hero,
                 AllProducts,
-                NavbarTop,
                 TrendingCategory
             },
         }
@@ -16,8 +13,6 @@
 
 <template>
     <div>
-        <!-- <NavbarTop/>     -->
-        <Nav/>
         <Hero/>
         <TrendingCategory/>
         <AllProducts/>
