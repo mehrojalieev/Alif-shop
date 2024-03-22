@@ -25,10 +25,10 @@ import { RouterLink } from "vue-router";
                             <RouterLink class="item-link" to="/">Guvohnoma</RouterLink>
                         </li>
                     </ul>
-                    <ul class="footer-menu">
+                    <ul class="footer-menu">   
                         <li class="item-title">  Servis </li>
                         <li>
-                            <RouterLink class="item-link" to="prayer-time">Namoz vaqti</RouterLink>
+                            <RouterLink class="item-link" to="/prayer-time">Namoz vaqti</RouterLink>
                         </li>
                         <li>
                             <RouterLink class="item-link" to="/">Muddatli to'lov islomda</RouterLink>
@@ -88,6 +88,7 @@ import { RouterLink } from "vue-router";
 
 <style  lang="scss">
     footer{
+        margin-top: 4rem;
         padding: 3rem;
         width: 100%;
         background-color: var(--secondary-dark-color);
