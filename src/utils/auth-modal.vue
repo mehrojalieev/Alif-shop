@@ -8,7 +8,7 @@ export default {
     },
     data() {
         return {
-            user_number: '+' + 998,
+            user_number: '+'+998,
             random__verify_code: 0,
             user__verify_code: 0,
             isVerify: false
@@ -33,13 +33,13 @@ export default {
 
                 
                 let randomNumber = ''
-                for (let i = 0; i < 4; i++) {
-                    randomNumber += Math.floor(Math.random() * 10);
-                    this.random__verify_code = randomNumber
+                for (let i = 0; i <  4; i++) {
+                    this.random__verify_code += Math.floor(Math.random() * 10);
+ 
                 }
-                console.log(randomNumber);
+                console.log(this.random__verify_code);
                 setTimeout(() => {
-                    alert('Kod '+ randomNumber)
+                    alert('Kod '+ this.random__verify_code)
                 },5000)
             } else {
                 alert("Ro'yxatdan o'tish uchun Telefon raqamingizni kiriting !")
@@ -49,7 +49,7 @@ export default {
             if(this.random__verify_code === this.user__verify_code){
                 setTimeout(() => {
                     alert("Ro'yxatdan o'tdingiz")
-                   this.$route.push("/")
+                   isOpenModal = false
                 },3000)
             }
             else{
@@ -62,7 +62,7 @@ export default {
 
 <template>
     <div @click="isOpenModal = false" :style="{ transform: isOpenModal ? 'scale(1)' : 'scale(0)' }" class="modal-overlay">
-        <div v-if="isVerify" :style="{ transform: isOpenModal && isOpenModal ? 'scale(1)' : 'scale(0)' }" @click.stop="isOpenModal"
+        <div v-if="isVerify" :style="{ transform:  isOpenModal ? 'scale(1)' : 'scale(0)' }" @click.stop="isOpenModal"
             class="auth-form">
             <div class="form-header">
                 <h3 class="form__header-title">SMS kodni kiriting <span>Kod {{ this.user_number }} raqamiga
@@ -82,7 +82,7 @@ export default {
                 <span @click="isOpenModal = false" class="material-symbols-outlined">close</span>
             </div>
             <label for="number">Telefon raqam
-                <input v-model="this.user_number" placeholder="+998" id="number" name="number" type="number"
+                <input v-model="this.user_number" :placeholder="this.user_number" id="number" name="number" type="tel"
                     inputmode="numeric">
             </label>
             <button @click="RegisterUser" class="register-btn" type="submit">Davom etish</button>
