@@ -88,7 +88,6 @@ import { RouterLink } from "vue-router";
 
 <style  lang="scss">
     footer{
-        margin-top: 4rem;
         padding: 3rem;
         width: 100%;
         background-color: var(--secondary-dark-color);

@@ -16,5 +16,6 @@
         <Hero/>
         <TrendingCategory/>
         <AllProducts/>
+        
     </div>
 </template>
