@@ -1,9 +1,10 @@
 <script>
 import Container from '@/utils/Container.vue'
 import { RouterLink } from 'vue-router';
+import CategoryDropdown from '@/components/CategoryDropdown.vue'
 import authModal from '@/utils/auth-modal.vue';
 export default {
-    components:{Container, authModal},
+    components:{Container, authModal, CategoryDropdown},
     data(){
         return {
             isFixed: false,
@@ -12,6 +13,7 @@ export default {
             isOpenModal: false,
             openCategory: false,
             openClearBtn: false,
+            openCategoryDropdown: false
         }
     },
     mounted(){
@@ -73,6 +75,7 @@ export default {
                     <button type="button" @click="isOpenModal=!isOpenModal"  class="auth-link">Kirish</button>
                     <authModal :isOpenModal="isOpenModal"/>
                 </div>
+                <CategoryDropdown :openCategory="openCategory"/>
             </div>
             <!-- RESPONSIVE CONTAINER -->
             <div class="responsive__navigation">
@@ -142,6 +145,7 @@ export default {
 }
 
     .nav-wrapper{
+        position: relative;
         margin: auto;
         width: 100%;
         display: flex;
