@@ -15,7 +15,6 @@
                 try {
                     const response = await ApiInstance.get("/products/trend_categories")
                     this.AllProducts = response.data
-                    console.log(response.data);
                 } 
                 catch (error) {
                 console.log(error);    

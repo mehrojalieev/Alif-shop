@@ -21,6 +21,7 @@ export default {
                         <img src="../assets/app-store.svg">
                         <img src="../assets/app-gallery.svg">
                     </div>
+                    <button class="application-btn">Ilovani ochish</button>
                 </div>
                 <div class="feature-scanner">
                     <img src="../assets/qr-code.webp">
@@ -34,19 +35,16 @@ export default {
 <style lang="scss">
 .feature{
     position: relative;
-    height: 250px;
-    width: 100%;
-    overflow: hidden;
+        width: 100%;
     background-color: #f4f6f7;
 }
 .feature-wrapper{
-    top: -2rem;
-    position: absolute;
+    // position: absolute;
     width: 100%;
     display: flex;
     align-items: center;
     column-gap: 1rem;
-    overflow: hidden;
+    padding: 0 1.5rem;
     img{
         width: 100%;
         max-width: 330px;
@@ -54,6 +52,7 @@ export default {
         object-fit: contain;
     }
 }
+
 .feature-content{
     .content-title{
         font-size: 24px;
@@ -79,6 +78,18 @@ export default {
             height: 35px;
         }
     }
+    .application-btn{
+        display: none;
+        width: 100%;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        border: none;
+        background-color: var(--warning-color);
+        color: var(--dark-color);
+        max-width: 440px;
+        height: 52px;
+    }
 }
 .feature-scanner{
     margin-left: 3rem;
@@ -97,6 +108,88 @@ export default {
         color: #5d6d7d;
         line-height: 20px;
         margin-top: .3rem;
+    }
+}
+
+
+// RESPONSIVE STYLES
+@media only screen and (max-width: 950px){
+    .feature-content{
+        .content-social{
+            display: none;
+        }
+        .application-btn{
+            margin-top: 1rem;
+            display: block;
+        }
+    }
+    .feature-scanner{
+        display: none;
+    }
+}
+@media only screen and (max-width: 746px){
+    .feature-content{
+     
+        .application-btn{
+            margin-top: 1rem;
+            display: block;
+        }
+        .content-title{
+            font-size: 20px;
+        }
+        .content-description{
+            font-size: 14px;
+        }
+        .application-btn{
+            height: 45px;
+            font-size: 15px;
+        }
+    }
+}
+@media only screen and (max-width: 628px){
+    .feature-wrapper{
+        flex-direction: column;
+    }
+    .feature-content{
+        margin-top: 1rem;
+        .content-title{
+            max-width: none;
+            font-size: 22px;
+        }
+        .content-description{
+            font-size: 16px;
+        }
+        .application-btn{
+            height: 54px;
+        }
+    }
+}
+@media only screen and (max-width: 410px){
+    .feature-content{
+        .content-title{
+            font-size: 20px;
+        }
+        .content-description{
+            font-size: 15px;
+        }
+        .application-btn{
+            height: 48px;
+        }
+    }
+}
+@media only screen and (max-width: 290px){
+    .feature-content{
+        margin-top: .4rem;
+        .content-title{
+            line-height: 28px;
+            font-size: 20px;
+        }
+        .content-description{
+            font-size: 14px;
+        }
+        .application-btn{
+            height: 45px;
+        }
     }
 }
 </style>
