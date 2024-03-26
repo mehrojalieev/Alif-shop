@@ -34,6 +34,7 @@ export default {
 
 <style lang="scss">
 .feature{
+    margin-top: 3rem;
     position: relative;
         width: 100%;
     background-color: #f4f6f7;
