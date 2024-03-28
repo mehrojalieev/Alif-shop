@@ -65,12 +65,12 @@ export default {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         margin-top: 30px;
-        gap: 18px 20px;
+        gap: 1.2rem;
     }
 
     .product-card{
         position: relative;
-        max-width: 220px;
+        max-width: 250px !important;
         border-radius: 8px;
         text-align: left;
         padding: 1rem .8rem;
@@ -78,7 +78,7 @@ export default {
 
         img{
             width: 100%;
-            height: 175px;
+            height: 185px !important;
             object-fit: contain;
         }
         .like-btn{

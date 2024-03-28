@@ -43,7 +43,7 @@ export default {
 </script>
 
 <template>
-    <nav :class="{'fixed-navbar': isFixed}">
+    <nav :style="{display: this.$route.path.startsWith('/dashboard') ? 'none' : 'block'}"  :class="{'fixed-navbar': isFixed}">
         <Container>
             <div  class="nav-wrapper">
                 <RouterLink to="/">

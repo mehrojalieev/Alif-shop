@@ -61,3 +61,17 @@ input[type=number]::-webkit-inner-spin-button{
         color: var(--warning-color) !important;
     }
 }
+
+@media only screen and (max-with:580px){
+   .swiper .swiper-button-next, .swiper-button-prev{
+        width: 3px !important;
+        height: 37px !important;
+        padding: .5rem !important;
+        display: none !important; 
+        &::after{
+            color: #a6abb1 !important;
+            font-weight: 700 !important;
+            font-size: 16px !important;
+        }
+    }
+}

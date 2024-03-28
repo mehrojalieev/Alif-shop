@@ -1,5 +1,7 @@
 import Home from "@/views/Home.vue"
 import {createRouter, createWebHistory} from 'vue-router'
+import ManageProducts from "@/views/ManageProducts.vue"
+import Dashboard from '@/views/Dashboard.vue'
 
 const routes = createRouter({
     history: createWebHistory(),
@@ -39,6 +41,17 @@ const routes = createRouter({
             name: 'Favorites',
             component: () => import('@/views/Favorite.vue')
         },
+
+
+        {
+            path: '/dashboard',
+            name: 'Dashboard',
+            component: Dashboard,
+            children:[
+                {path: 'manage-products', component: ManageProducts}
+            ] 
+        },
+
         {
 
             path: '/:catchAll(.*)',

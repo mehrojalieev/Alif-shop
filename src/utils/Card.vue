@@ -77,7 +77,7 @@
 
      .product-card{
         position: relative;
-        max-width: 220px;
+        max-width: 270px;
         border-radius: 8px;
         text-align: left;
         padding: 1rem .8rem;

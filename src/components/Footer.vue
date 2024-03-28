@@ -7,7 +7,7 @@ import { RouterLink } from "vue-router";
 </script>
 
 <template>
-    <footer>
+    <footer :style="{display: this.$route.path.startsWith('/dashboard') ? 'none' : 'block'}" >
         <Container>
             <div class="footer-wrapper"> 
                     <ul class="footer-menu">
