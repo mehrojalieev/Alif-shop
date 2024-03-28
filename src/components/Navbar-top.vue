@@ -6,7 +6,7 @@ import { RouterLink } from "vue-router";
     }
 </script>
 <template>
-    <div class="navbar-top">
+    <div :style="{display: this.$route.path.startsWith('/dashboard') ? 'none' : 'flex'}"  class="navbar-top">
 
     <Container>
             <div class="nav__top-navigation">
