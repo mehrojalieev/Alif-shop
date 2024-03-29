@@ -26,6 +26,7 @@ export default {
         background-color: #FAFAFA;
     }
     .dashboard-content{
+        width: 100%;
         padding: 1rem;
     }
 </style>

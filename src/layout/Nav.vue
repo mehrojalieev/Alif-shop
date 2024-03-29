@@ -74,7 +74,7 @@ export default {
                         <span class="material-symbols-outlined">favorite</span>
                         <p>Saralanganlar</p>
                     </RouterLink>
-                    <RouterLink  to="/dashboard" class="registered-auth" v-if="this.registeredNumber">
+                    <RouterLink  :to="{name: 'Dashboard'}" class="registered-auth" v-if="this.registeredNumber">
                         <span class="material-symbols-outlined">account_circle</span>
                         <strong class="number-text">{{ this.registeredNumber }}</strong>
                     </RouterLink>

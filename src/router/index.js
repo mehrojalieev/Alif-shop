@@ -44,7 +44,7 @@ const routes = createRouter({
 
 
         {
-            path: '/dashboard',
+            path: '/dashboard/',
             name: 'Dashboard',
             component: Dashboard,
             children:[
