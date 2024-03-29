@@ -13,7 +13,9 @@ export default {
             isOpenModal: false,
             openCategory: false,
             openClearBtn: false,
-            openCategoryDropdown: false
+            openCategoryDropdown: false,
+            registeredNumber: localStorage.getItem("registered-number") &&  localStorage.getItem("registered-number")
+
         }
     },
     mounted(){
@@ -72,7 +74,12 @@ export default {
                         <span class="material-symbols-outlined">favorite</span>
                         <p>Saralanganlar</p>
                     </RouterLink>
-                    <button type="button" @click="isOpenModal=!isOpenModal"  class="auth-link">Kirish</button>
+                    <RouterLink  to="/dashboard" class="registered-auth" v-if="this.registeredNumber">
+                        <span class="material-symbols-outlined">account_circle</span>
+                        <strong class="number-text">{{ this.registeredNumber }}</strong>
+                    </RouterLink>
+                    <button v-else type="button" @click="isOpenModal=!isOpenModal"  class="auth-link">Kirish</button>
+
                     <authModal :isOpenModal="isOpenModal"/>
                 </div>
                 <CategoryDropdown :openCategory="openCategory"/>
@@ -86,7 +93,7 @@ export default {
                     <option value="ru">RU</option>
                     <option value="en">EN</option>
                 </select>
-                </div>
+                </div>  
 
                 <form @focusout="isFocosed=false" :style="{border: isFocosed ? '2px solid #FFBE1F' : '2px solid #eee' }" class="navigation-form">
                     <input @focus="isFocosed=true"  type="text" placeholder="Tovarlarni izlash">
@@ -298,6 +305,25 @@ export default {
                 background-color: var(--warning-hover-color);
                 cursor: pointer;
             }
+        }
+    }
+    .registered-auth{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        row-gap: 5px;
+        text-decoration: none;
+        color: var(--dark-color);
+        transition: .1s;
+        &:hover{
+            color: var(--warning-color);
+        }
+        span{
+            font-size: 26px;
+        }
+        .number-text{
+            font-weight: 400;
+            font-size: 13px;
         }
     }
 

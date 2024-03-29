@@ -15,49 +15,57 @@ export default {
     <div :class="!this.isOpenSidebar ? 'sidebar closed-sidebar':'sidebar'">
         <span v-if="this.isOpenSidebar"  @click="this.isOpenSidebar = false"  class="material-symbols-outlined close-sidebar">arrow_back</span>
         <span v-else @click="this.isOpenSidebar = true" class="material-symbols-outlined close-sidebar">arrow_forward</span>
+       <div class="sidebar__menu-logo__wrapper">
         <RouterLink class="sidebar-header" to="/">
             <img v-if="this.isOpenSidebar" src="../assets/logo.svg">
             <img v-else src="../assets/aliflogo.jpg">
         </RouterLink>
         <ul class="sidebar__menu">
             <li class="menu-item">
-                <span class="material-symbols-outlined">inventory_2</span>
                 <RouterLink class="item-link" to="manage-products"> 
-                    Product management
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <strong>Product management </strong>
                 </RouterLink>
             </li>
             <li class="menu-item">
-                <span class="material-symbols-outlined">people</span>
-                <RouterLink class="item-link" to="manage-products">
-                    Users management
+                <RouterLink class="item-link" to="users-management">
+                    <span class="material-symbols-outlined">people</span>
+                    <strong>Users management</strong>
                 </RouterLink>
             </li>
             <li class="menu-item">
-                <span class="material-symbols-outlined">monitoring</span>
-                <RouterLink class="item-link" to="/">
-                    Analytic
+                <RouterLink class="item-link" to="analytic">
+                    <span class="material-symbols-outlined">monitoring</span>
+                   <strong> Analytic</strong>
                 </RouterLink>
             </li>
             <li  class="menu-item">
-                <span class="material-symbols-outlined"> settings</span>
-                <RouterLink class="item-link" to="/">
-                    Settings
+                <RouterLink class="item-link" to="settings">
+                    <span class="material-symbols-outlined"> settings</span>
+                    <strong>Settings</strong>
                 </RouterLink>
             </li>
             <li class="menu-item">
-                <RouterLink class="item-link" to="/">
-                    <span class="material-symbols-outlined">
-                        headset_mic</span>
-                    Get help
+                <RouterLink class="item-link" to="help">
+                    <span class="material-symbols-outlined">headset_mic</span>
+                    <strong>Get help</strong>
                 </RouterLink>
             </li>
         </ul>
+       </div>
+        <div class="logout-btn">
+            <span class="material-symbols-outlined">logout</span>
+            <button class="logout-text">Logout</button>
+        </div>
     </div>
 </template>
 
 
 <style lang="scss">
 .sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     transition: .1s;
     position: relative;
     max-width: 270px;
@@ -65,9 +73,9 @@ export default {
     border-radius: 8px;
     height: calc(100vh - 30px);
     background-color: var(--light-color);
-    // background-color: var(--secondary-color);
     padding: 1rem .6rem;
 }
+
 
 .sidebar-header {
     display: flex;
@@ -86,37 +94,45 @@ export default {
     }
 }
 
+
 .sidebar__menu {
     margin-top: 2rem;
     list-style-type: none;
     row-gap: 1rem;
-    .menu-item{
+    .item-link{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         padding: 14px 10px;
         border-radius: 8px;
         transition: .1s;
         margin-top: 1rem;
         column-gap: 7px;
+        width: 100% !important;
+        text-decoration: none;
         span {
             font-size: 24px;
-            // margin-top: 13px;
-        }
-        .item-link {
-            width: 100% !important;
             color: var(--secondary-color);
-            text-decoration: none;
+        }
+        strong{
+            color: var(--secondary-color);
             font-size: 16px;
             font-weight: 500;
-        }   
+
         }
+       
+    }
+    .router-link-exact-active{
+        background-color: var(--warning-color);
+        span, strong{
+            color: var(--light-color);
+        }
+    } 
         
 }
-.sidebar__menu  .menu-item:hover{
+.sidebar__menu  .item-link:hover{
     background-color: var(--warning-color);
-    
-    .item-link, span{
+     span, strong{
         color: var(--light-color);
     }
 }
@@ -137,8 +153,42 @@ export default {
 }
 .closed-sidebar{
     max-width: 100px;
-    .item-link{
-        display: none;
+    .item-link {
+        justify-content: center;
+        padding: 12px 0px;
+        strong{
+            display: none;
+        }
+    } 
+    .logout-btn {
+        width: 100% !important;
+        text-align: center;
+        justify-content: center !important;
+        span{
+            font-size: 27px;
+        }
+        .logout-text{
+            display: none;
+        }
+    }
+}
+
+.logout-btn{
+    width: fit-content !important;
+    display: flex;
+    align-items: center;
+    width: auto;
+    cursor: pointer;
+    padding-left: 12px;
+    span{
+        color: var(--danger-color);
+    }
+    .logout-text{
+        background: transparent;
+        border: none;
+        font-weight: 500;
+        font-size: 18px;
+        color: var(--danger-color);
     }
 }
 </style>
