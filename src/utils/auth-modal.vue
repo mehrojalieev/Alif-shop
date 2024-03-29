@@ -11,7 +11,7 @@ export default {
             user_number: '+'+998,
             random__verify_code: 0,
             user__verify_code: 0,
-            isVerify: false
+            isVerify: false,
         }
     },
     watch: {
@@ -42,18 +42,19 @@ export default {
                     alert('Kod '+ this.random__verify_code)
                 },5000)
             } else {
-                alert("Ro'yxatdan o'tish uchun Telefon raqamingizni kiriting !")
+                alert("Ro'yxatdan o'tish uchun Telefon raqamingizni to'gri kiriting !")
             }
         },
         VerifyUser(){
             if(this.random__verify_code === this.user__verify_code){
                 setTimeout(() => {
-                    alert("Ro'yxatdan o'tdingiz")
-                   isOpenModal = false
+                    alert("Ro'yxatdan o'tdingiz ✅")
+                    localStorage.setItem("registered-number", this.user_number)
+                   this.isOpenModal = false
                 },3000)
             }
             else{
-                alert('Xatolik')
+                alert('Kodni tekshirib, qaytadan kiriting !')
             }
         }
     }
