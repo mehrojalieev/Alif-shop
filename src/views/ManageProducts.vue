@@ -1,10 +1,13 @@
 <script>
 import ApiInstance from "@/api/index.js"
+import AddProductModal from "@/components/AddProductModal.vue"
     export default {
+        components:{AddProductModal},
         data(){
             return {
                 All_Product_Categories: [],
                 All_Products: [],
+                openModal: false,
                 category_value: "",
                 input_value: '',
                 registeredNumber: localStorage.getItem("registered-number") && localStorage.getItem("registered-number")
@@ -35,11 +38,9 @@ import ApiInstance from "@/api/index.js"
             
         },
         updated(){
-           
             this.LoadProducts()
         },
         mounted(){
-            // this.LoadProducts()
             this.LoadProductCategories()
         }
     }
@@ -54,13 +55,13 @@ import ApiInstance from "@/api/index.js"
             </div>
         </div>
         <div class="product__actions-wrapper">
-            <form class="product__search-form">
+            <form v-on:submit.prevent="this.LoadProducts" class="product__search-form">
                 <span @click="this.input_value = ''" :style="{display: this.input_value ? 'block' : 'none'}"  class="material-symbols-outlined clear__input-btn">close</span>
                 <input v-model="this.input_value" type="text" placeholder="Qidirish...">
-                <button ><span class="material-symbols-outlined">search</span></button>
+                <button type="submit" ><span class="material-symbols-outlined">search</span></button>
             </form>
             <div class="manage__btns-action">
-                <button class="add-btn">+ ADD</button>
+                <button @click="this.openModal =! this.openModal" class="add-btn">+ ADD</button>
                 <select v-model="this.category_value" @change="LoadProducts" class="categories-select">
                     <option disabled value="">Kataloglar</option>
                     <option :value="categoryItem.category"  v-for="categoryItem in this.All_Product_Categories">
@@ -68,6 +69,7 @@ import ApiInstance from "@/api/index.js"
                     </option>
                 </select>
             </div>
+            <AddProductModal :openModal="this.openModal"/>
             
         </div>
         <div class="table-wrapper">
@@ -231,6 +233,7 @@ import ApiInstance from "@/api/index.js"
     }
 
     .table-wrapper{
+        margin-top: 1rem;
         height: 500px;
         overflow: auto;
     }
@@ -244,7 +247,7 @@ import ApiInstance from "@/api/index.js"
         border-collapse: collapse;
     }
     .table-header{
-        background-color: #f4f4f4;
+        background-color: #e4e3e3;
         height: 58px;
         position: sticky;
         top: 0;
@@ -258,9 +261,10 @@ import ApiInstance from "@/api/index.js"
     }
     .products-table > .table-body{
         overflow-y: auto;
-        height: 300px !important;
         tr{
-            height: 60px !important;
+            vertical-align: middle;
+            height: 100%;
+            height: 75px !important;
             transition: .2s;
            
             td{
@@ -289,8 +293,8 @@ import ApiInstance from "@/api/index.js"
         justify-content: center;
         align-items: center !important;
         column-gap: .7rem;
+        margin-top: 1.8rem;
         .edit-btn{
-            margin-top: 18px;
             font-size: 21px;
             transition: .1s;
             color: var(--secondary-color);

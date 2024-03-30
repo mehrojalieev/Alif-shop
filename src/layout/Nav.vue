@@ -74,11 +74,11 @@ export default {
                         <span class="material-symbols-outlined">favorite</span>
                         <p>Saralanganlar</p>
                     </RouterLink>
-                    <RouterLink  :to="{name: 'Dashboard'}" class="registered-auth" v-if="this.registeredNumber">
+                    <RouterLink  :to="{name: 'DashboardIndex'}" class="registered-auth" v-if="this.registeredNumber">
                         <span class="material-symbols-outlined">account_circle</span>
                         <strong class="number-text">{{ this.registeredNumber }}</strong>
                     </RouterLink>
-                    <button v-else type="button" @click="isOpenModal=!isOpenModal"  class="auth-link">Kirish</button>
+                    <button v-else type="button" @click="isOpenModal= !isOpenModal"  class="auth-link">Kirish</button>
 
                     <authModal :isOpenModal="isOpenModal"/>
                 </div>
