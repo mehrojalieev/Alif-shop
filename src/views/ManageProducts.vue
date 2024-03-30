@@ -5,6 +5,8 @@ import ApiInstance from "@/api/index.js"
             return {
                 All_Product_Categories: [],
                 All_Products: [],
+                category_value: "",
+                input_value: '',
                 registeredNumber: localStorage.getItem("registered-number") && localStorage.getItem("registered-number")
             }
         },
@@ -21,19 +23,23 @@ import ApiInstance from "@/api/index.js"
 
             },
            async LoadProducts(){
-                try {
-                  const response =  await ApiInstance.get('/products')
-                   this.All_Products = response.data
+                try { 
+                  const response =  await ApiInstance.get(`/products/${this.category_value ? 'category/'+this.category_value : ''}`)
+                   this.All_Products = this.input_value ? this.All_Products.filter(product => product.product_name.toLowerCase().includes(this.input_value.toLowerCase() )) :  response.data
                     
-                } 
+                }
                 catch (error) {
                     console.log(error);    
                 }
-
-            }
+            },
+            
+        },
+        updated(){
+           
+            this.LoadProducts()
         },
         mounted(){
-            this.LoadProducts()
+            // this.LoadProducts()
             this.LoadProductCategories()
         }
     }
@@ -49,14 +55,15 @@ import ApiInstance from "@/api/index.js"
         </div>
         <div class="product__actions-wrapper">
             <form class="product__search-form">
-                <input type="text" placeholder="Qidirish...">
+                <span @click="this.input_value = ''" :style="{display: this.input_value ? 'block' : 'none'}"  class="material-symbols-outlined clear__input-btn">close</span>
+                <input v-model="this.input_value" type="text" placeholder="Qidirish...">
                 <button ><span class="material-symbols-outlined">search</span></button>
             </form>
             <div class="manage__btns-action">
                 <button class="add-btn">+ ADD</button>
-                <select class="categories-select">
-                    <option >Kataloglar</option>
-                    <option :value="category"  v-for="categoryItem in this.All_Products">
+                <select v-model="this.category_value" @change="LoadProducts" class="categories-select">
+                    <option disabled value="">Kataloglar</option>
+                    <option :value="categoryItem.category"  v-for="categoryItem in this.All_Product_Categories">
                         {{ categoryItem.category.split("_") .join(" ")}}
                     </option>
                 </select>
@@ -147,6 +154,7 @@ import ApiInstance from "@/api/index.js"
         background-color: var(--light-color);
     }
     .product__search-form{
+    position: relative;
         display: flex;
         align-items: center;
         width: 100%;
@@ -155,6 +163,15 @@ import ApiInstance from "@/api/index.js"
         border-radius: 8px;
         overflow: hidden;
         border: 2.9px solid var(--warning-color);
+        .clear__input-btn{
+            position: absolute;
+            right: 8%;
+            font-size: 23px;
+            cursor: pointer;
+            &:active{
+                transform: scale(0.9);
+            }
+        }
        
         input{
             flex: 1;
@@ -266,13 +283,14 @@ import ApiInstance from "@/api/index.js"
                 }
               
     }
+
     .product__manage-action{
         display: flex;
         justify-content: center;
         align-items: center !important;
         column-gap: .7rem;
         .edit-btn{
-            margin-top: 17px;
+            margin-top: 18px;
             font-size: 21px;
             transition: .1s;
             color: var(--secondary-color);
