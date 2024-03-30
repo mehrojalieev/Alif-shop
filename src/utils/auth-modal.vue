@@ -63,8 +63,7 @@ export default {
 
 <template>
     <div @click="isOpenModal = false" :style="{ transform: isOpenModal ? 'scale(1)' : 'scale(0)' }" class="modal-overlay">
-        <div v-if="isVerify" :style="{ transform:  isOpenModal ? 'scale(1)' : 'scale(0)' }" @click.stop="isOpenModal"
-            class="auth-form">
+        <div v-if="isVerify" :style="{ transform:  isOpenModal ? 'scale(1)' : 'scale(0)' }" @click.stop="isOpenModal" class="auth-form">
             <div class="form-header">
                 <h3 class="form__header-title">SMS kodni kiriting <span>Kod {{ this.user_number }} raqamiga
                         yuborildi</span></h3>
