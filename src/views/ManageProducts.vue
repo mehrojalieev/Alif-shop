@@ -280,7 +280,7 @@ import AddProductModal from "@/components/AddProductModal.vue"
     }
     .table-body > tr:hover{
                  cursor: default;
-                background-color: var(--warning-hover-color);
+                background-color: var(--warning-color);
                 color: var(--light-color);
                 .edit-btn{
                     color: var(--light-color);
