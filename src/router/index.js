@@ -2,6 +2,8 @@ import Home from "@/views/Home.vue"
 import {createRouter, createWebHistory} from 'vue-router'
 import ManageProducts from "@/views/ManageProducts.vue"
 import Dashboard from '@/views/Dashboard.vue'
+import ManageUsers from "@/views/ManageUsers.vue"
+import { nextTick } from "vue"
 
 const routes = createRouter({
     history: createWebHistory(),
@@ -47,8 +49,10 @@ const routes = createRouter({
             path: '/dashboard/',
             name: 'Dashboard',
             component: Dashboard,
+            meta: {auth: false},
             children:[
-                {path: 'manage-products', name: 'DashboardIndex',  component: ManageProducts}
+                {path: 'manage-products', name: 'DashboardIndex',  component: ManageProducts},
+                {path: 'manage-users', name: 'ManageUsers', component: ManageUsers}
             ] 
         },
 
@@ -60,5 +64,13 @@ const routes = createRouter({
         }
     ]
 })
+// routes.beforeEach((to, from, next) =>{
+//     console.log(to);
+//     if( to.meta.auth !== false){
+//         next('/dashboard')
+//     } else{
+//         // next("/")
+//     }
+// })
 
 export default routes

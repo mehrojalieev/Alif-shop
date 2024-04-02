@@ -1,9 +1,20 @@
 <script>
 import Sidebar from "@/layout/Sidebar.vue"
+import routes from "@/router";
 import { RouterView } from "vue-router";
 export default {
     components:{
         Sidebar
+    },
+    data(){
+        return {
+            RegisteredNumber: localStorage.getItem("registered-number") && localStorage.getItem("registered-number")
+        }
+    },
+    updated(){
+        if(!this.RegisteredNumber){
+                routes.push("/")
+        }
     }
 }
 </script>

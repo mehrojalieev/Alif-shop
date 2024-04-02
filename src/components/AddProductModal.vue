@@ -12,7 +12,7 @@ export default {
             memoryRAM: [4, 6, 8, 12, 16, 24, 32, 64],
             memoryuROM: [16, 32, 64, 128, 256, 512, 1024, 2048],
             selectedCategory: "",
-            ImagesData: [1,2]
+            ImagesData: ['', '']
         }
     },
     updated(){
@@ -93,7 +93,7 @@ export default {
                         <label for="">Mahsulot rasmlarini yuklang</label>
                         <div class="images-action">
                             <button :disabled="this.ImagesData.length === 2" class="remove__link-btn" @click="this.ImagesData.pop()" type="button">Linkni o'chirish -</button>
-                            <button class="add__link-btn" @click="this.ImagesData.push(1)" type="button">Link qo'shish +</button>
+                            <button class="add__link-btn" @click="this.ImagesData.push('')" type="button">Link qo'shish +</button>
                         </div>
                     </div>
                 <div class="product__upload-images">
