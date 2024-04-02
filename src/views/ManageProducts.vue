@@ -48,7 +48,7 @@ import AddProductModal from "@/components/AddProductModal.vue"
 <template>
     <div class="manage-products">
         <div class="product__top-navigation">
-            <h2 class="">Products List</h2>
+            <h2 class="">Maxsulotlar Ro'yxati</h2>
             <div class="top__navigation-content">
                 <img src="../assets/User-avatar.svg.png" alt="User default avatar">
                 <p>{{this.registeredNumber}}</p>
@@ -146,11 +146,12 @@ import AddProductModal from "@/components/AddProductModal.vue"
     }
 
     .product__actions-wrapper{
+        width: 100%;
         margin-top: 1rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 100%;
+        column-gap: 1rem;
         padding: 10px;
         border-radius: 8px;
         background-color: var(--light-color);
@@ -167,7 +168,7 @@ import AddProductModal from "@/components/AddProductModal.vue"
         border: 2.9px solid var(--warning-color);
         .clear__input-btn{
             position: absolute;
-            right: 8%;
+            right: 9%;
             font-size: 23px;
             cursor: pointer;
             &:active{
@@ -309,5 +310,29 @@ import AddProductModal from "@/components/AddProductModal.vue"
            @extend .edit-btn;
             color: var(--danger-color) !important;
         }
+    }
+
+    // RESPONSIVE STYLES
+    @media only screen and (max-width: 1116px){
+
+        .product__search-form{
+            max-width: 420px !important;
+            height: 37px !important;
+            .clear__input-btn{
+                right: 9% !important;
+            }
+        }
+        .manage__btns-action{
+        column-gap: .6rem;
+        .add-btn{
+            padding: 0rem .7rem !important;
+            font-size: 14px !important;
+    }
+    }
+    .categories-select{
+        height: 36px !important;
+        font-size: 14px !important;
+        max-width: 150px !important;
+    }
     }
 </style>

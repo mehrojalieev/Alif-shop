@@ -1,10 +1,12 @@
 <script>
 import { RouterLink } from 'vue-router';
-
+import LogoutModal from '@/components/LogoutModal.vue'
 export default {
+    components:{LogoutModal},
     data(){
         return  {
-            isOpenSidebar: true
+            isOpenSidebar: true,
+            openLogoutModal: false
         }
     }
 }
@@ -28,7 +30,7 @@ export default {
                 </RouterLink>
             </li>
             <li class="menu-item">
-                <RouterLink class="item-link" to="users-management">
+                <RouterLink class="item-link" to="manage-users">
                     <span class="material-symbols-outlined">people</span>
                     <strong>Users management</strong>
                 </RouterLink>
@@ -55,13 +57,15 @@ export default {
        </div>
         <div class="logout-btn">
             <span class="material-symbols-outlined">logout</span>
-            <button class="logout-text">Logout</button>
+            <button @click="this.openLogoutModal=! this.openLogoutModal" class="logout-text">Logout</button>
         </div>
     </div>
+    <LogoutModal :openLogoutModal="this.openLogoutModal"/>
 </template>
 
 
 <style lang="scss">
+
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -179,16 +183,53 @@ export default {
     align-items: center;
     width: auto;
     cursor: pointer;
-    padding-left: 12px;
+    padding: .2rem 1.3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .1s;
     span{
         color: var(--danger-color);
     }
     .logout-text{
+        cursor: pointer;
         background: transparent;
         border: none;
         font-weight: 500;
         font-size: 18px;
         color: var(--danger-color);
     }
+}
+
+.logout-btn:hover{
+    background-color: var(--danger-color);
+    span, .logout-text{
+        color: var(--light-color);
+
+    }
+}
+
+// RESPONSIVE STYLES
+@media only screen and (max-width: 1142px){
+    .sidebar{
+        max-width: 250px;
+    }
+    .sidebar__menu {
+    margin-top: 2rem;
+    row-gap: 1rem;
+    .item-link{
+        padding: 14px 10px;
+        column-gap: 7px;
+        span {
+            font-size: 22px;
+        }
+        strong{
+            font-size: 15px;
+
+        }
+       
+    }
+   
+        
+}
 }
 </style>
