@@ -45,7 +45,7 @@ export default {
 </script>
 
 <template>
-    <nav :style="{display: this.$route.path.startsWith('/dashboard') ? 'none' : 'block'}"  :class="{'fixed-navbar': isFixed}">
+    <nav :style="{display: this.$route.path.startsWith('/account') ? 'none' : 'block'}"  :class="{'fixed-navbar': isFixed}">
         <Container>
             <div  class="nav-wrapper">
                 <RouterLink to="/">
@@ -125,7 +125,7 @@ export default {
                     <span class="material-symbols-outlined">favorite</span>
                     <p>Saralanganlar</p>
                 </RouterLink>
-                <RouterLink class="item-link" to="/">
+                <RouterLink class="item-link" :to="{name: 'DashboardIndex'}">
                     <span class="material-symbols-outlined">person</span>
                     <p>Profil</p>
                 </RouterLink>
@@ -283,13 +283,13 @@ export default {
                 border-radius: 50%;
                 position: absolute;
                 color: transparent;
-                background-color: red;
+                background-color: #ff0000;
             }
         }
-        .router-link-exact-active{
-            span, p{
-                color: var(--warning-color);
-            }
+    }
+    .router-link-exact-active{
+        span, p{
+            color: var(--warning-color);
         }
       
         .auth-link{
@@ -652,6 +652,7 @@ export default {
 
     @media only screen and (max-width: 420px){
         .tablet__navbar-actions{
+            display: none;
             column-gap: 10px;
         padding: .5rem .4rem;
         height: 55px;
@@ -666,18 +667,22 @@ export default {
 
     }
     }
-    @media only screen and (max-width: 330px){
+    @media only screen and (max-width: 360px){
         .navigation-form{
         height: 47px;
         padding: 0;
         column-gap: 1px;
+        overflow: auto !important;
         input{
             font-size: 12px;
+            text-indent: 13px;
         }
         .clear__input-icon{
             display: none !important;
         }
         .search-btn{
+            position: absolute;
+            right: 22px;
             padding: 6px 5px;
             font-size: 12px;
             }

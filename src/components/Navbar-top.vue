@@ -6,7 +6,7 @@ import { RouterLink } from "vue-router";
     }
 </script>
 <template>
-    <div :style="{display: this.$route.path.startsWith('/dashboard') ? 'none' : 'flex'}"  class="navbar-top">
+    <div :style="{display: this.$route.path.startsWith('/account') ? 'none' : 'flex'}"  class="navbar-top">
 
     <Container>
             <div class="nav__top-navigation">
@@ -69,6 +69,9 @@ import { RouterLink } from "vue-router";
             color: var(--warning-color);
         }
     }
+    .router-link-exact-active{
+            color: var(--warning-color) !important;
+         }
 
     // RESPONSIVE STYLES 
 
@@ -86,4 +89,41 @@ import { RouterLink } from "vue-router";
             display: none;
         }
     }
+
+    @media only screen and (max-width:520px){
+        .nav__top-navigation{
+            position: relative;
+            .language-category{
+                display: none;
+            }
+    }
+        .top__navigation-actions{
+            justify-content: space-between;
+            position: absolute;
+            top: 30%;
+            left: 10%;
+        column-gap: 15px;
+        .navigation-link{
+            font-size: 13px;
+           
+        }
+         }
+    }
+
+    @media only screen and (max-width:410px){
+        .top__navigation-actions{
+            position: absolute;
+            top: 25%;
+            left: 5%;
+        column-gap: 11px;
+        .navigation-link{
+            font-weight: 700;
+            font-size: 11px;
+           
+        }
+         }
+    }
+
+
+
 </style>

@@ -114,14 +114,14 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 100vw ;
     height: 100vh;
     left: 0;
     top: 0;
     z-index: 2;
     position: absolute;
     background-color: #8080808c;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(3px);
 }
 
 .add__product-title {
@@ -144,7 +144,7 @@ export default {
     transition: .2s;
     transform-origin: center;
     width: 100%;
-    max-width: 800px;
+    max-width: 750px;
     border-radius: 8px;
     background-color: var(--light-color);
 

@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-    <div :style="{display: this.$route.path.startsWith('/dashboard') ? 'none' : 'block'}"  class="feature">
+    <div :style="{display: this.$route.path.startsWith('/account') ? 'none' : 'block'}"  class="feature">
 
         <Container>
             <div class="feature-wrapper">

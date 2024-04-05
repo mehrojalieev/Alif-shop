@@ -63,6 +63,7 @@
 
 <style lang="scss" scoped>
 .hero-banner{
+  
     width: 100%;
     max-height: 380px;
     border-radius: 8px;
@@ -78,8 +79,21 @@
   img{
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   }
 }
+
+
+@media only screen and (max-width:370px){
+  .hero-banner{
+    height: 160px;
+  }
+  .swiper-slide{
+    img{
+      object-fit: fill;
+    }
+  }
+}
+
 
 </style>
