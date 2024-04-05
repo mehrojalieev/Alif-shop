@@ -46,8 +46,8 @@ const routes = createRouter({
 
 
         {
-            path: '/dashboard/',
-            name: 'Dashboard',
+            path: '/account/',
+            name: 'Account',
             component: Dashboard,
             meta: {auth: false},
             children:[
