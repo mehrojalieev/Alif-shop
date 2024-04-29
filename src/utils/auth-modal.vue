@@ -92,19 +92,20 @@ export default {
 </template>
 
 
-<style lang="scss">
+<style scoped lang="scss">
 .modal-overlay {
 
     display: flex;
     align-items: center !important;
     justify-content: center;
-    position: absolute;
+    position: absolute !important;
     width: 100vw;
     height: 100vh !important;
-    top: 0px;
-    left: 0;
-    z-index: 3;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 30 !important;
     background-color: #dad7d769;
+    backdrop-filter: blur(10px);
 }
 
 .auth-form {

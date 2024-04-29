@@ -1,6 +1,7 @@
 <script>
-export default {
+import ApiInstance from '@/api';
 
+export default {
     props: {
         openModal: {
             type: Boolean,
@@ -11,12 +12,55 @@ export default {
         return {
             memoryRAM: [4, 6, 8, 12, 16, 24, 32, 64],
             memoryuROM: [16, 32, 64, 128, 256, 512, 1024, 2048],
-            selectedCategory: "",
-            ImagesData: ['', '']
+            ImagesData: ['', ''],
+            // New Product Data
+            product_category: "",
+            product_name: "",
+            product_brend: "",
+            product_price: 0,
+            product_date: 0,
+            product_memory_ram: 0,
+            product_memory_rom: 0,
+            product_in_stock: 0,
+            product_color: ""
         }
     },
-    updated(){
-        console.log(this.selectedCategory);
+    methods: {
+        handleCreateProduct() {
+          
+            ApiInstance('http://localhost:10000/api/products/add-product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    product_name: this.product_name,
+                    category: this.product_category,
+                    brand: this.product_brend,
+                    price: this.product_price,
+                    in_stock: this.product_in_stock,
+                    memory_rom: this.product_memory_rom,
+                    memory_ram: this.product_memory_ram,
+                    color: this.product_color,
+                    image: this.ImagesData
+                })
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err))
+        },
+
+        addInputLink() {
+            this.ImagesData.push('');
+        },
+        removeInputLink() {
+            if (this.ImagesData.length > 1) {
+                this.ImagesData.pop();
+            }
+        }
+    },
+    updated() {
+        console.log(this.product_category);
     }
 }
 
@@ -24,13 +68,13 @@ export default {
 
 <template>
     <div :style="{ transform: openModal ? 'scale(1)' : 'scale(0)' }" class="addproduct__modal-overlay">
-        <form :style="{ transform: openModal ? 'scale(1)' : 'scale(0)' }" class="addproduct__modal-form">
+        <form @submit.prevent="this.handleCreateProduct" :style="{ transform: openModal ? 'scale(1)' : 'scale(0)' }" class="addproduct__modal-form">
             <span @click="openModal = false" class="material-symbols-outlined close-modal">close</span>
             <h2 class="add__product-title">Yangi mahsulot qo'shish</h2>
             <div class="product-categories">
                 <label for="category">
                     Mahsulot Katalogini tanlang
-                    <select v-model="this.selectedCategory" id="category" class="category-select">
+                    <select v-model="this.product_category" id="category" class="category-select">
                         <option disabled value="category">Kataloglar</option>
                         <option value="telefon">Telefon</option>
                         <option value="televizor">Televizor</option>
@@ -40,36 +84,36 @@ export default {
             <div class="product__item-input__wrapper">
                 <label for="product_name">
                     Mahsulot nomi
-                    <input id="product_name" type="text" placeholder="Nomi...">
+                    <input  v-model="this.product_name"  id="product_name" type="text" placeholder="Nomi...">
 
                 </label>
                 <label for="brend">
                     Mahsulot brendi
-                    <input id="brend" type="text" placeholder=" Brend...">
+                    <input v-model="this.product_brend" id="brend" type="text" placeholder=" Brend...">
                 </label>
             </div>
             <div class="product__item-input__wrapper">
                 <label for="price">
                     Mahsulot narxi
-                    <input id="price" type="text" placeholder="Narx...">
+                    <input v-model="this.product_price" id="price" type="text" placeholder="Narx...">
 
                 </label>
                 <label for="brend">
                     Ishlab chiqarilgan sana
-                    <input id="brend" type="date" placeholder=" Sana...">
+                    <input v-model="this.product_date" id="brend" type="date" placeholder=" Sana...">
                 </label>
             </div>
             <div :style="{display: this.selectedCategory === 'telefon' || this.selectedCategory === 'noutbuk' ? 'flex' : 'none'}" class="product__memories-wrapper">
                 <label for="ram">
                     Operativ xotira
-                    <select class="memory-select">
+                    <select v-model="this.product_memory_ram" class="memory-select">
                         <option :value="ram" v-for="ram in this.memoryRAM" value="">{{ ram }} GB</option>
                     </select>
 
                 </label>
                 <label for="rom">
                     Tezkor xotira
-                    <select class="memory-select">
+                    <select v-model="this.product_memory_rom" class="memory-select">
                         <option :value="rom" v-for="rom in this.memoryuROM" value="">{{ rom }} GB</option>
                     </select>
 
@@ -79,12 +123,12 @@ export default {
             <div class="product__item-input__wrapper">
                 <label for="in_stock">
                     Zaxirada
-                    <input id="in_stock" type="tenumbert" placeholder="Zaxirada...">
+                    <input v-model="this.product_in_stock" id="in_stock" type="tenumbert" placeholder="Zaxirada...">
 
                 </label>
                 <label for="color">
                     Mahsulot rangi
-                    <input id="color" type="text" placeholder=" Rangi...">
+                    <input v-model="this.product_color" id="color" type="text" placeholder=" Rangi...">
                 </label>
             </div>
 
@@ -97,7 +141,7 @@ export default {
                         </div>
                     </div>
                 <div class="product__upload-images">
-                    <input v-for="(input, index) in this.ImagesData" type="text" placeholder="Rasm linki..." :key="index">
+                    <input v-model="this.ImagesData[index]" v-for="(input, index) in this.ImagesData" type="text" placeholder="Rasm linki..." :key="index">
                 </div>
             </div>
 
@@ -116,12 +160,12 @@ export default {
     justify-content: center;
     width: 100vw ;
     height: 100vh;
-    left: 0;
+left: 0;
     top: 0;
-    z-index: 2;
+    z-index: 10;
     position: absolute;
     background-color: #8080808c;
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(8px);
 }
 
 .add__product-title {

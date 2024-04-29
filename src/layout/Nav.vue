@@ -80,7 +80,6 @@ export default {
                     </RouterLink>
                     <button v-else type="button" @click="isOpenModal= !isOpenModal"  class="auth-link">Kirish</button>
 
-                    <authModal :isOpenModal="isOpenModal"/>
                 </div>
                 <CategoryDropdown :openCategory="openCategory"/>
             </div>
@@ -132,6 +131,7 @@ export default {
                 
             </div>
         </Container>    
+        <authModal :isOpenModal="isOpenModal"/>
     </nav>
 </template>
 
@@ -292,19 +292,19 @@ export default {
             color: var(--warning-color);
         }
       
-        .auth-link{
-            text-decoration: none;
-            font-size: 17px;
-            color: var(--dark-color);
-            padding: 9px 12px;
-            border: 2px solid var(--warning-color);
-            border-radius: 8px;
-            transition: 0.2s;
-            background: transparent;
-            &:hover{
-                background-color: var(--warning-hover-color);
-                cursor: pointer;
-            }
+    }
+    .auth-link{
+        text-decoration: none;
+        font-size: 17px;
+        color: var(--dark-color);
+        padding: 9px 12px;
+        border: 2px solid var(--warning-color);
+        border-radius: 8px;
+        transition: 0.2s;
+        background: transparent;
+        &:hover{
+            background-color: var(--warning-hover-color);
+            cursor: pointer;
         }
     }
     .registered-auth{

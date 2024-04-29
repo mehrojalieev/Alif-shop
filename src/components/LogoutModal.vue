@@ -30,7 +30,7 @@
 
 
 
-<style lang="scss">
+<style scoped lang="scss">
     .modal-overlay{
         display: flex;
         align-items: center;
