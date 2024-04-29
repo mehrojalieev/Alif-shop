@@ -1,5 +1,5 @@
 <script>
-    import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+    import { Autoplay,  Navigation } from 'swiper/modules';
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import Container from '@/utils/Container.vue'
     import 'swiper/css/pagination';
@@ -23,6 +23,7 @@
         <swiper
     :spaceBetween="30"
     :centeredSlides="true"
+    :speed="1500"
     :autoplay="{
       delay: 2500,
       disableOnInteraction: false,
@@ -63,9 +64,8 @@
 
 <style lang="scss" scoped>
 .hero-banner{
-  
     width: 100%;
-    max-height: 380px;
+    max-height: 500px;
     border-radius: 8px;
     overflow: hidden;
 }
